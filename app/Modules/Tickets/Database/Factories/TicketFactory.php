@@ -22,6 +22,8 @@ class TicketFactory extends Factory
     {
         return [
             'title' => Str::replace('.', '', $this->faker->sentence),
+            'created_at' => $this->faker->dateTimeBetween('-1 year'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];
     }
 }
