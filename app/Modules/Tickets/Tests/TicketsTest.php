@@ -10,17 +10,36 @@ class TicketsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
-    public function test_create_ticket(): void
+    public function test_ticket_is_in_database_after_creation(): void
     {
-        $ticket = new Ticket();
-        $ticket->title = 'Ticket #1';
-        $ticket->save();
+        $ticket = Ticket::factory()->create();
+
+        $this->assertModelExists($ticket);
+    }
+
+    public function test_ticket_is_visible_on_main_page(): void
+    {
+        Ticket::factory(['title' => 'Ticket #1'])->create();
 
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSee('Ticket #1');
+    }
+
+    public function test_pager_is_visible_on_main_page(): void
+    {
+        Ticket::factory()->count(16)->create();
+
+        $response = $this->get('/');
+        $response->assertSee('Next');
+    }
+
+
+    public function test_pager_is_not_visible_on_main_page(): void
+    {
+        Ticket::factory()->count(15)->create();
+
+        $response = $this->get('/');
+        $response->assertDontSee('Next');
     }
 }
