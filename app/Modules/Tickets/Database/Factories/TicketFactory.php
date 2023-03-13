@@ -2,6 +2,7 @@
 
 namespace App\Modules\Tickets\Database\Factories;
 
+use App\Modules\Tickets\Enums\TicketStatus;
 use App\Modules\Tickets\Models\Ticket;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -22,6 +23,13 @@ class TicketFactory extends Factory
     {
         return [
             'title' => Str::replace('.', '', $this->faker->sentence),
+            'status' => $this->faker->randomElement([
+                TicketStatus::NEW,
+                TicketStatus::IN_PROGRESS,
+                TicketStatus::ASSIGNED,
+                TicketStatus::PENDING,
+                TicketStatus::RESOLVED
+            ]),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('project_id');
+            $table->enum('status', ['NEW', 'ASSIGNED', 'IN_PROGRESS', 'PENDING', 'RESOLVED']);
             $table->timestamps();
         });
     }
