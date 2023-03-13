@@ -9,7 +9,8 @@ class TicketsController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::orderBy('updated_at', 'desc')
+        $tickets = Ticket::with('project')
+            ->orderBy('updated_at', 'desc')
             ->paginate();
 
         return view('tickets.index', compact('tickets'));

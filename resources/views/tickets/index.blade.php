@@ -11,6 +11,7 @@
             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
         >
             <th class="px-4 py-3">Title</th>
+            <th class="px-4 py-3">Project</th>
             <th class="px-4 py-3">Updated</th>
         </tr>
         </thead>
@@ -22,7 +23,10 @@
                 <td class="px-4 py-3">
                     {{ $ticket->title }}
                 </td>
-                <td>
+                <td class="px-4 py-3">
+                    {{ $ticket->project->title }}
+                </td>
+                <td class="px-4 py-3">
                     {{ $ticket->updated_at->diffForHumans() }}
                 </td>
             </tr>
