@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, ProjectQueries;
 
     protected $casts = [
         'status' => ProjectStatus::class,

@@ -14,8 +14,8 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
         Project::factory()
-            ->count(20)
-            ->has(Ticket::factory()->count(30))
+            ->count(100)
+            ->has(Ticket::factory()->count(300))
             ->create();
     }
 }
