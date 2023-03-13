@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->enum('status', ['OPEN', 'CLOSED']);
             $table->timestamps();
         });
     }

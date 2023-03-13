@@ -21,13 +21,9 @@
                 ></path>
             </svg>
         </button>
-        <!-- Search input -->
-        <div class="flex justify-center flex-1 lg:mr-32">
-            <div
-                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
-            >
-            </div>
-        </div>
+
+        <x-layout.search />
+
         <ul class="flex items-center flex-shrink-0 space-x-6">
             <!-- Theme toggler -->
             <li class="flex">
