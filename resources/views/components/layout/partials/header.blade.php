@@ -22,7 +22,7 @@
             </svg>
         </button>
 
-        <x-layout.search />
+        <x-layout.partials.search />
 
         <ul class="flex items-center flex-shrink-0 space-x-6">
             <!-- Theme toggler -->
