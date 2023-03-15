@@ -4,7 +4,7 @@
      */
 @endphp
 
-<x-layout.app>
+<x-layout.basic>
     <table class="w-full whitespace-no-wrap">
         <thead>
         <tr
@@ -39,4 +39,4 @@
     </table>
 
     {{ $tickets->onEachSide(1)->links() }}
-</x-layout.app>
+</x-layout.basic>

@@ -8,13 +8,13 @@
                     <img
                         aria-hidden="true"
                         class="object-cover w-full h-full dark:hidden"
-                        src="/assets/img/create-account-office.jpeg"
+                        src="../assets/img/login-office.jpeg"
                         alt="Office"
                     />
                     <img
                         aria-hidden="true"
                         class="hidden object-cover w-full h-full dark:block"
-                        src="/assets/img/create-account-office-dark.jpeg"
+                        src="../assets/img/login-office-dark.jpeg"
                         alt="Office"
                     />
                 </div>
@@ -23,28 +23,35 @@
                         <h1
                             class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
                         >
-                            Create account
+                            Login
                         </h1>
-                        <x-forms.form :action="route('register')" method="POST">
+                        <x-forms.form  :action="route('login')" method="POST">
                             <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
 
-                            <x-forms.password name="password" title="Password" placeholder="***************"/>
+                            <x-forms.password name="password" title="Password" placeholder="***************" />
 
-                            <x-forms.password name="password_confirmation" title="Confirm password" placeholder="***************"/>
 
-                            <x-forms.checkbox name="policy" :value="old('policy')" option="1" title="I agree to the privacy policy"/>
-
-                            <x-forms.button name="register">Create account</x-forms.button>
-
-                            <p class="mt-4">
-                                <a
-                                    class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                                    href="{{ route('login')}} "
-                                >
-                                    Already have an account? Login
-                                </a>
-                            </p>
+                            <x-forms.button name="login">
+                                Log in
+                            </x-forms.button>
                         </x-forms.form>
+
+                        <p class="mt-4">
+                            <a
+                                class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="./forgot-password.html"
+                            >
+                                Forgot your password?
+                            </a>
+                        </p>
+                        <p class="mt-1">
+                            <a
+                                class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="{{ route('register') }}"
+                            >
+                                Create account
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
