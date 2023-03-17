@@ -38,5 +38,5 @@
         </tbody>
     </table>
 
-    {{ $tickets->onEachSide(1)->links() }}
+    {{ $tickets->links() }}
 </x-layout.basic>

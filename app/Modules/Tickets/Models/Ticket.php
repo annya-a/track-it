@@ -7,10 +7,11 @@ use App\Modules\Tickets\Database\Factories\TicketFactory;
 use App\Modules\Tickets\Enums\TicketStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Ticket extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $casts = [
         'status' => TicketStatus::class
@@ -19,6 +20,13 @@ class Ticket extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+        ];
     }
 
     protected static function newFactory()
