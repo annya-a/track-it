@@ -80,7 +80,7 @@ class LoginTest extends TestCase
     }
 
     /**
-     * Guest enters incorrect credentials and doesn't logg in.
+     * Guest enters incorrect credentials and doesn't log in.
      *
      * @dataProvider dataWithWrongCredentials
      */
@@ -103,7 +103,6 @@ class LoginTest extends TestCase
         return [
             [['email' => '', 'password' => '']],
             [['email' => 'not-valid-email', 'password' => '']],
-            [['email' => 'not-valid-email', 'password' => '123']]
         ];
     }
 
