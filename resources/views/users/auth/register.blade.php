@@ -26,15 +26,21 @@
                             Create account
                         </h1>
                         <x-forms.form :action="route('register')" method="POST">
-                            <x.forms.text name="name" title="Your Name" :value="old('name')" placeholder="John Doe"/>
-
-                            <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
-
-                            <x-forms.password name="password" title="Password" placeholder="***************"/>
-
-                            <x-forms.password name="password_confirmation" title="Confirm password" placeholder="***************"/>
-
-                            <x-forms.checkbox name="policy" :value="old('policy')" option="1" title="I agree to the privacy policy"/>
+                            <div class="mt-4">
+                                <x-forms.text name="name" title="Your Name" :value="old('name')" placeholder="John Doe"/>
+                            </div>
+                            <div class="mt-4">
+                                <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
+                            </div>
+                            <div class="mt-4">
+                                <x-forms.password name="password" title="Password" placeholder="***************"/>
+                            </div>
+                            <div class="mt-4">
+                                <x-forms.password name="password_confirmation" title="Confirm password" placeholder="***************"/>
+                            </div>
+                            <div class="mt-4">
+                                <x-forms.checkbox name="policy" :value="old('policy')" option="1" title="I agree to the privacy policy"/>
+                            </div>
 
                             <x-forms.button name="register">Create account</x-forms.button>
 
