@@ -26,6 +26,8 @@
                             Create account
                         </h1>
                         <x-forms.form :action="route('register')" method="POST">
+                            <x.forms.text name="name" title="Your Name" :value="old('name')" placeholder="John Doe"/>
+
                             <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
 
                             <x-forms.password name="password" title="Password" placeholder="***************"/>

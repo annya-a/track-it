@@ -30,15 +30,15 @@ class TicketsTest extends TestCase
         $response->assertRedirect('login');
     }
 
-    public function test_ticket_is_visible_on_main_page(): void
+    public function test_ticket_is_visible_on_tickets_page(): void
     {
         $user = User::factory()->create();
 
         $ticket = Ticket::factory()
-            ->for(Project::factory())
+            ->for(Project::factory()->for($user, 'owner'))
             ->create();
 
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/tickets');
         $response->assertStatus(200);
         $response->assertSee($ticket->title);
     }
@@ -49,7 +49,7 @@ class TicketsTest extends TestCase
 
         Ticket::factory()
             ->count(16)
-            ->for(Project::factory())
+            ->for(Project::factory()->for($user, 'owner'))
             ->create();
 
         $response = $this->actingAs($user)->get('/tickets');
@@ -64,10 +64,10 @@ class TicketsTest extends TestCase
 
         Ticket::factory()
             ->count(15)
-            ->for(Project::factory())
+            ->for(Project::factory()->for($user, 'owner'))
             ->create();
 
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/tickets');
         $response->assertStatus(200);
         $response->assertDontSee('Next');
     }

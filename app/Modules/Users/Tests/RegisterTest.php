@@ -50,6 +50,7 @@ class RegisterTest extends TestCase
     public function test_guest_sends_wrong_data_when_is_trying_to_register(array $data)
     {
         $response = $this->post('/register', [
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
             'password_confirmation' => $data['password_confirmation'],
@@ -68,6 +69,7 @@ class RegisterTest extends TestCase
         User::factory(['email' => 'john.doe@example.com'])->create();
 
         $response = $this->post('/register', [
+            'name' => 'John Doe',
             'email' => 'john.doe@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
@@ -84,6 +86,7 @@ class RegisterTest extends TestCase
     public function test_guest_enters_correct_credentials_and_finishes_registration()
     {
         $response = $this->post('register', [
+            'name' => 'John Doe',
             'email' => 'john.doe@example.com',
             'password' => 'secret123',
             'password_confirmation' => 'secret123',
@@ -104,13 +107,15 @@ class RegisterTest extends TestCase
     {
         return [
             [[
+                'name' => '',
                 'email' => '',
                 'password' => '',
                 'password_confirmation' => '',
                 'policy' => '',
-                'errors' => ['email', 'password', 'policy']
+                'errors' => ['name', 'email', 'password', 'policy']
             ]],
             [[
+                'name' => 'John Doe',
                 'email' => 'not-valid-email',
                 'password' => 'password',
                 'password_confirmation' => 'password',
@@ -118,6 +123,7 @@ class RegisterTest extends TestCase
                 'errors' => ['email']
             ]],
             [[
+                'name' => 'John Doe',
                 'email' => 'john.doe@example.com',
                 'password' => '123',
                 'password_confirmation' => '123',
@@ -125,6 +131,7 @@ class RegisterTest extends TestCase
                 'errors' => ['password']
             ]],
             [[
+                'name' => 'John Doe',
                 'email' => 'john.doe@example.com',
                 'password' => 'password',
                 'password_confirmation' => 'password',
@@ -132,6 +139,7 @@ class RegisterTest extends TestCase
                 'errors' => ['policy']
             ]],
             [[
+                'name' => 'John Doe',
                 'email' => 'john.doe@example.com',
                 'password' => 'password',
                 'password_confirmation' => 'password mismatch',

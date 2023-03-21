@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserCreate
 {
-    public function create(string $email, string $password)
+    public function create(string $name, string $email, string $password)
     {
         $user = new User;
+        $user->name = $name;
         $user->email = $email;
         $user->password = Hash::make($password);
         $user->save();

@@ -16,7 +16,8 @@ class ProjectsTest extends TestCase
 
     public function test_project_should_be_in_database_after_creation(): void
     {
-        $project = Project::factory()->create();
+        $project = Project::factory()
+            ->create();
 
         $this->assertModelExists($project);
     }
@@ -31,7 +32,9 @@ class ProjectsTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $project = Project::factory()->create();
+        $project = Project::factory()
+            ->for($user, 'owner')
+            ->create();
 
         $response = $this->actingAs($user)->get('/projects');
         $response->assertStatus(200);
@@ -42,7 +45,10 @@ class ProjectsTest extends TestCase
     {
         $user = User::factory()->create();
 
-        Project::factory()->count(16)->create();
+        Project::factory()
+            ->for($user, 'owner')
+            ->count(16)
+            ->create();
 
         $response = $this->actingAs($user)->get('/projects');
         $response->assertStatus(200);
@@ -53,7 +59,11 @@ class ProjectsTest extends TestCase
     public function test_pager_is_not_visible_on_projects_page(): void
     {
         $user = User::factory()->create();
-        Project::factory()->count(15)->create();
+
+        Project::factory()
+            ->for($user, 'owner')
+            ->count(15)
+            ->create();
 
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(200);
