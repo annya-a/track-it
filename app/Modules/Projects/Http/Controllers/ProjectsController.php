@@ -11,6 +11,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::openFirst()
+            ->with('owner')
             ->latest('updated_at')
             ->paginate();
 

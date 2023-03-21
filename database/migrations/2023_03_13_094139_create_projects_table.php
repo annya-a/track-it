@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->enum('status', ['OPEN', 'CLOSED']);
+            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
         });
     }

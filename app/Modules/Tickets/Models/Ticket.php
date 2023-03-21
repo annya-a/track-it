@@ -29,6 +29,14 @@ class Ticket extends Model
         ];
     }
 
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new ProjectOwnerScope);
+    }
+
     protected static function newFactory()
     {
         return TicketFactory::new();
