@@ -31,7 +31,7 @@
                             <x-forms.password name="password" title="Password" placeholder="***************" />
 
 
-                            <x-forms.button name="login">
+                            <x-forms.button name="login" class="w-full">
                                 Log in
                             </x-forms.button>
                         </x-forms.form>

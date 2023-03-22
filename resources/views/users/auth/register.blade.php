@@ -42,7 +42,7 @@
                                 <x-forms.checkbox name="policy" :value="old('policy')" option="1" title="I agree to the privacy policy"/>
                             </div>
 
-                            <x-forms.button name="register">Create account</x-forms.button>
+                            <x-forms.button name="register" class="w-full">Create account</x-forms.button>
 
                             <p class="mt-4">
                                 <a
