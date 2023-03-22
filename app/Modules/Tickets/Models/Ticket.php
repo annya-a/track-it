@@ -34,7 +34,7 @@ class Ticket extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new ProjectOwnerScope);
+        static::addGlobalScope(new ProjectCompanyScope);
     }
 
     protected static function newFactory()

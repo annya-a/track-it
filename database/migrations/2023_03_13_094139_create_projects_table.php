@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->foreignId('creator_id');
+            $table->foreignId('company_id');
             $table->enum('status', ['OPEN', 'CLOSED']);
-            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
         });
     }
