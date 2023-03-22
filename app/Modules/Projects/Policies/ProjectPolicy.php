@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\Companies\Policies;
+namespace App\Modules\Projects\Policies;
 
 use App\Modules\Users\Models\User;
 
-class CompanyPolicy
+class ProjectPolicy
 {
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        return $user->company()->doesntExist();
+        return $user->company()->exists();
     }
 }

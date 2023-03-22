@@ -24,7 +24,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->company,
+            'name' => $this->faker->company,
             'creator_id' => User::factory(),
             'company_id' => Company::factory(),
             'status' => $this->faker->randomElement([ProjectStatus::OPEN, ProjectStatus::CLOSED]),
