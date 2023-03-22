@@ -2,6 +2,7 @@
 
 namespace App\Modules\Projects\Tests;
 
+use App\Modules\Companies\Models\Company;
 use App\Modules\Projects\Models\Project;
 use App\Modules\Users\Models\User;
 use Tests\TestCase;
@@ -30,10 +31,13 @@ class ProjectsTest extends TestCase
 
     public function test_project_is_visible_on_projects_page(): void
     {
-        $user = User::factory()->create();
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
 
         $project = Project::factory()
-            ->for($user, 'owner')
+            ->for($company)
             ->create();
 
         $response = $this->actingAs($user)->get('/projects');
@@ -43,10 +47,13 @@ class ProjectsTest extends TestCase
 
     public function test_pager_is_visible_on_projects_page(): void
     {
-        $user = User::factory()->create();
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
 
         Project::factory()
-            ->for($user, 'owner')
+            ->for($company)
             ->count(16)
             ->create();
 
@@ -58,10 +65,13 @@ class ProjectsTest extends TestCase
 
     public function test_pager_is_not_visible_on_projects_page(): void
     {
-        $user = User::factory()->create();
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
 
         Project::factory()
-            ->for($user, 'owner')
+            ->for($company)
             ->count(15)
             ->create();
 

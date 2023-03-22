@@ -2,6 +2,7 @@
 
 namespace App\Modules\Tickets\Tests;
 
+use App\Modules\Companies\Models\Company;
 use App\Modules\Projects\Models\Project;
 use App\Modules\Tickets\Models\Ticket;
 use App\Modules\Users\Models\User;
@@ -32,10 +33,16 @@ class TicketsTest extends TestCase
 
     public function test_ticket_is_visible_on_tickets_page(): void
     {
-        $user = User::factory()->create();
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
 
         $ticket = Ticket::factory()
-            ->for(Project::factory()->for($user, 'owner'))
+            ->for(Project::factory()
+                ->for($user, 'creator')
+                ->for($company)
+            )
             ->create();
 
         $response = $this->actingAs($user)->get('/tickets');
@@ -45,11 +52,18 @@ class TicketsTest extends TestCase
 
     public function test_pager_is_visible_on_tickets_page(): void
     {
-        $user = User::factory()->create();
 
-        Ticket::factory()
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
+
+        $ticket = Ticket::factory()
             ->count(16)
-            ->for(Project::factory()->for($user, 'owner'))
+            ->for(Project::factory()
+                ->for($user, 'creator')
+                ->for($company)
+            )
             ->create();
 
         $response = $this->actingAs($user)->get('/tickets');
@@ -60,11 +74,17 @@ class TicketsTest extends TestCase
 
     public function test_pager_is_not_visible_on_tickets_page(): void
     {
-        $user = User::factory()->create();
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
 
-        Ticket::factory()
+        $ticket = Ticket::factory()
             ->count(15)
-            ->for(Project::factory()->for($user, 'owner'))
+            ->for(Project::factory()
+                ->for($user, 'creator')
+                ->for($company)
+            )
             ->create();
 
         $response = $this->actingAs($user)->get('/tickets');
