@@ -1,3 +1,7 @@
+@php
+use App\Modules\Companies\Models\Company;
+@endphp
+
 <ul class="mt-6">
     <x-navigation.partials.link routeName="dashboard" title="Dashboard" >
         <svg
@@ -49,3 +53,14 @@
         </svg>
     </x-navigation.partials.link>
 </ul>
+
+@can('create', Company::class)
+    <div class="px-6 my-6">
+        <a href="{{ route('companies.create') }}"
+            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        >
+            Create company
+            <span class="ml-2" aria-hidden="true">+</span>
+        </a>
+    </div>
+@endcan
