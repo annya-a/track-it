@@ -5,10 +5,18 @@ namespace App\Modules\Companies\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Companies\Http\Requests\CompanyStoreRequest;
 use App\Modules\Companies\Models\Company;
+use App\Modules\Companies\Services\CompanyCreator;
 use App\Providers\RouteServiceProvider;
 
 class CompanyCreateController extends Controller
 {
+    protected CompanyCreator $company_creator;
+
+    public function __construct(CompanyCreator $companyCreator)
+    {
+        $this->company_creator = $companyCreator;
+    }
+
     public function create()
     {
         return view('companies.create');
@@ -16,14 +24,8 @@ class CompanyCreateController extends Controller
 
     public function store(CompanyStoreRequest $request)
     {
-        $company = new Company;
-        $company->name = $request->name;
-        $company->creator_id = $request->user()->id;
-        $company->save();
+        $this->company_creator->create($request->name, $request->user());
 
-        $request->user()->company_id = $company->id;
-        $request->user()->save();
-
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('projects.create');
     }
 }

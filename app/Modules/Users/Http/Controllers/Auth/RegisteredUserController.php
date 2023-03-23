@@ -3,7 +3,7 @@
 namespace App\Modules\Users\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Users\Auth\UserCreate;
+use App\Modules\Users\Auth\UserCreator;
 use App\Modules\Users\Http\Requests\Auth\RegisteredRequest;
 use App\Modules\Users\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -17,9 +17,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    protected UserCreate $user_register;
+    protected UserCreator $user_register;
 
-    public function __construct(UserCreate $user_register)
+    public function __construct(UserCreator $user_register)
     {
         $this->user_register = $user_register;
     }

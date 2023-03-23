@@ -7,7 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserCreate
+class UserCreator
 {
     public function create(string $name, string $email, string $password)
     {
