@@ -3,6 +3,7 @@
 namespace App\Modules\Tickets\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Projects\Models\Project;
 use App\Modules\Tickets\Models\Ticket;
 use Illuminate\Http\Request;
 

@@ -3,11 +3,13 @@
 namespace App\Modules\Users\Models;
 
 use App\Modules\Companies\Models\Company;
+use App\Modules\Projects\Models\Project;
 use App\Modules\Users\Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use mysql_xdevapi\CollectionModify;
 
 class User extends Authenticatable
 {
@@ -35,6 +37,11 @@ class User extends Authenticatable
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'creator_id');
     }
 
     protected static function newFactory()

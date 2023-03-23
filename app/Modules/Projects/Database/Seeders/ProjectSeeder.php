@@ -21,7 +21,9 @@ class ProjectSeeder extends Seeder
             ->each(function (User $user) {
                 Project::factory()
                     ->count(mt_rand(1, 10))
-                    ->has(Ticket::factory()->count(300))
+                    ->has(Ticket::factory()
+                        ->for($user, 'creator')
+                        ->count(300))
                     ->for($user, 'creator')
                     ->create();
             });

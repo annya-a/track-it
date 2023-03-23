@@ -30,7 +30,7 @@
                             <x-tickets.status :status="$ticket->status" />
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            {{ $ticket->project->title }}
+                            {{ $ticket->project->name }}
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{ $ticket->updated_at->diffForHumans() }}
