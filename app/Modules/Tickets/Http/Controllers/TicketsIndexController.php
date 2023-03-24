@@ -7,6 +7,7 @@ use App\Modules\Projects\Models\Project;
 use App\Modules\Tickets\Models\Ticket;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Laravel\Scout\Builder as ScoutBuilder;
 
 class TicketsIndexController extends Controller
 {
@@ -20,7 +21,13 @@ class TicketsIndexController extends Controller
         $tickets = $tickets->when($project->id, function (Builder $query) use ($project) {
             $query->where('project_id', $project->id);
         })
-            ->resolvedLast()
+            ->when($tickets instanceof ScoutBuilder, function (ScoutBuilder $query) {
+                $query->query(function ($query) {
+                    $query->resolvedLast();
+                });
+            }, function (Builder $query) {
+                $query->resolvedLast();
+            })
             ->orderBy('updated_at', 'desc')
             ->paginate()
             ->appends('query', null)

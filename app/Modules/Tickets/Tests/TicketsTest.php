@@ -58,7 +58,7 @@ class TicketsTest extends TestCase
             ->for($company)
             ->create();
 
-        $ticket = Ticket::factory()
+        Ticket::factory()
             ->count(16)
             ->for(Project::factory()
                 ->for($user, 'creator')
@@ -79,7 +79,7 @@ class TicketsTest extends TestCase
             ->for($company)
             ->create();
 
-        $ticket = Ticket::factory()
+        Ticket::factory()
             ->count(15)
             ->for(Project::factory()
                 ->for($user, 'creator')

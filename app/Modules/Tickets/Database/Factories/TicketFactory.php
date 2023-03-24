@@ -4,6 +4,7 @@ namespace App\Modules\Tickets\Database\Factories;
 
 use App\Modules\Tickets\Enums\TicketStatus;
 use App\Modules\Tickets\Models\Ticket;
+use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -30,6 +31,7 @@ class TicketFactory extends Factory
                 TicketStatus::PENDING,
                 TicketStatus::RESOLVED
             ]),
+            'creator_id' => User::factory(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];
