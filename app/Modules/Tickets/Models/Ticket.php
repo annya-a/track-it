@@ -9,10 +9,11 @@ use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use App\Modules\Tickets\Models\TicketQueries;
 
 class Ticket extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, TicketQueries;
 
     protected $casts = [
         'status' => TicketStatus::class

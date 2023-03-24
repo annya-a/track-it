@@ -20,6 +20,7 @@ class TicketsIndexController extends Controller
         $tickets = $tickets->when($project->id, function (Builder $query) use ($project) {
             $query->where('project_id', $project->id);
         })
+            ->resolvedLast()
             ->orderBy('updated_at', 'desc')
             ->paginate()
             ->appends('query', null)
