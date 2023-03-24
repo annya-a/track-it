@@ -2,7 +2,7 @@
 
 use App\Modules\Companies\Http\Controllers\CompanyCreateController as CompanyCreateController;
 use App\Modules\Companies\Models\Company;
-use App\Modules\Tickets\Http\Controllers\TicketsController;
+use App\Modules\Tickets\Http\Controllers\TicketsIndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], __DIR__ . '/web/projects.php');
@@ -10,7 +10,7 @@ Route::group([], __DIR__ . '/web/tickets.php');
 Route::group([], __DIR__ . '/web/users.php');
 
 Route::middleware('auth')->group(function() {
-    Route::get('/', [TicketsController::class, 'index'])
+    Route::get('/', [TicketsIndexController::class, 'index'])
         ->name('dashboard');
     Route::get('/companies/create', [CompanyCreateController::class, 'create'])
         ->can('create', Company::class)

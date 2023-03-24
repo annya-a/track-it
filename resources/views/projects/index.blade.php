@@ -23,7 +23,9 @@
                 @foreach($projects as $project)
                     <tr class="text-gray-700 dark:text-gray-400">
                         <td class="px-4 py-3 text-sm">
-                            {{ $project->name }}
+                            <a href="{{ route('projects.show', $project) }}"
+                               class="font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                            >{{ $project->name }}</a>
                         </td>
                         <td class="px-4 py-3 text-xs">
                             <x-projects.status :status="$project->status" />

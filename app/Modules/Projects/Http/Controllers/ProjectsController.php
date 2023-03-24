@@ -8,6 +8,9 @@ use App\Modules\Projects\Models\Project;
 
 class ProjectsController extends Controller
 {
+    /**
+     * List of projects.
+     */
     public function index()
     {
         $projects = Project::openFirst()

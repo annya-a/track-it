@@ -1,10 +1,15 @@
+@props([
+    'tickets',
+    'pageTitle',
+])
+
 @php
     /**
      * @var \Illuminate\Contracts\Pagination\LengthAwarePaginator $tickets
      */
 @endphp
 
-<x-layout.basic>
+<x-layout.basic :pageTitle="$pageTitle">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
@@ -30,7 +35,9 @@
                             <x-tickets.status :status="$ticket->status" />
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            {{ $ticket->project->name }}
+                            <a href="{{ route('projects.show', $ticket->project) }}"
+                               class="font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                            >{{ $ticket->project->name }}</a>
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{ $ticket->updated_at->diffForHumans() }}

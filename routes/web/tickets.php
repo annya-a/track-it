@@ -1,18 +1,18 @@
 <?php
 
-use App\Modules\Tickets\Http\Controllers\TicketsController;
-use App\Modules\Tickets\Http\Controllers\CreateTicketController;
+use App\Modules\Tickets\Http\Controllers\TicketsIndexController;
+use App\Modules\Tickets\Http\Controllers\TicketCreateController;
 use App\Modules\Tickets\Models\Ticket;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
-    Route::get('/tickets', [TicketsController::class, 'index'])
+    Route::get('/tickets', [TicketsIndexController::class, 'index'])
         ->name('tickets.index');
-    Route::get('/projects/{project}/tickets', [TicketsController::class, 'index'])
+    Route::get('/projects/{project}/tickets', [TicketsIndexController::class, 'index'])
         ->name('projects.tickets');
-    Route::get('/projects/{project}/tickets/create', [CreateTicketController::class, 'create'])
+    Route::get('/projects/{project}/tickets/create', [TicketCreateController::class, 'create'])
         ->can('create', Ticket::class)
         ->name('tickets.create');
-    Route::post('/projects/{project}/tickets/create', [CreateTicketController::class, 'store'])
+    Route::post('/projects/{project}/tickets/create', [TicketCreateController::class, 'store'])
         ->can('create', Ticket::class);
 });

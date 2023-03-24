@@ -7,7 +7,7 @@ use App\Modules\Projects\Models\Project;
 use App\Modules\Tickets\Http\Requests\TicketStoreRequest;
 use App\Modules\Tickets\Services\TicketCreator;
 
-class CreateTicketController extends Controller
+class TicketCreateController extends Controller
 {
     protected TicketCreator $ticket_creator;
 
