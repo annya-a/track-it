@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->index();
             $table->foreignId('creator_id');
             $table->enum('status', ['NEW', 'ASSIGNED', 'IN_PROGRESS', 'PENDING', 'RESOLVED']);
             $table->timestamps();
