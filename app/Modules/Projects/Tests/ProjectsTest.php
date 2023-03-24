@@ -4,6 +4,7 @@ namespace App\Modules\Projects\Tests;
 
 use App\Modules\Companies\Models\Company;
 use App\Modules\Projects\Models\Project;
+use App\Modules\Tickets\Models\Ticket;
 use App\Modules\Users\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -128,6 +129,50 @@ class ProjectsTest extends TestCase
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(200);
         $response->assertDontSee('Next');
+    }
+
+    /**
+     * On project page user sees ticket which belongs to project.
+     */
+    public function test_on_project_page_user_sees_ticket_which_belongs_to_project()
+    {
+        $company = $this->createCompany();
+        $user = $this->createUserWithCompany($company);
+
+        $project = Project::factory()
+            ->for($company)
+            ->create();
+
+        Ticket::factory(['title' => 'My first ticket'])
+            ->for($project)
+            ->create();
+
+        $response = $this->actingAs($user)->get("/projects/{$project->id}");
+        $response->assertSeeText('My first ticket');
+    }
+
+    /**
+     * On project page user doesn't see ticket which doesn't belong to project.
+     */
+    public function test_on_project_page_user_sees_ticket_which_doesnt_belong_to_project()
+    {
+        $company = $this->createCompany();
+        $user = $this->createUserWithCompany($company);
+
+        $project1 = Project::factory()
+            ->for($company)
+            ->create();
+
+        $project2 = Project::factory()
+            ->for($company)
+            ->create();
+
+        Ticket::factory(['title' => 'My first ticket'])
+            ->for($project2)
+            ->create();
+
+        $response = $this->actingAs($user)->get("/projects/{$project1->id}");
+        $response->assertDontSeeText('My first ticket');
     }
 
     /**
