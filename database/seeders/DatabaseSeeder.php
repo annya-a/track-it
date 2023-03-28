@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Modules\Projects\Database\Seeders\ProjectSeeder;
-use App\Modules\Projects\Models\Project;
-use App\Modules\Tickets\Database\Seeders\TicketsSeeder;
+use App\Domain\Projects\Database\Seeders\ProjectSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

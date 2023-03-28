@@ -1,8 +1,8 @@
 <?php
 
-use App\Modules\Users\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\App\Web\Controllers\AuthenticatedSessionController;
+use App\App\Web\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
-use App\Modules\Users\Http\Controllers\Auth\RegisteredUserController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])

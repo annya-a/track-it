@@ -1,5 +1,5 @@
 @php
-    use App\Modules\Tickets\Enums\TicketStatus;
+    use App\Domain\Tickets\Enums\TicketStatus;
 
     /**
      * @var TicketStatus $status

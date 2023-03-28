@@ -1,6 +1,6 @@
 @php
-    use App\Modules\Companies\Models\Company;
-    use App\Modules\Projects\Models\Project;
+    use App\Domain\Companies\Models\Company;
+    use App\Domain\Projects\Models\Project;
 @endphp
 
 <ul class="mt-6">

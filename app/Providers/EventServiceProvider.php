@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Modules\Companies\Models\Company;
-use App\Modules\Users\Observers\CompanyObserver;
+use App\Domain\Companies\Models\Company;
+use App\Domain\Users\Observers\CompanyObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

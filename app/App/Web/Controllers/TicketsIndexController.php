@@ -1,0 +1,48 @@
+<?php
+
+namespace App\App\Web\Controllers;
+
+use App\Domain\Projects\Models\Project;
+use App\Domain\Tickets\Models\Ticket;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Laravel\Scout\Builder as ScoutBuilder;
+
+class TicketsIndexController extends Controller
+{
+    public function index(Request $request, ?Project $project)
+    {
+        $tickets = $request->search
+        ? Ticket::search($request->search)
+        : Ticket::query();
+
+
+        $tickets = $tickets->when($project->id, function (Builder $query) use ($project) {
+            $query->where('project_id', $project->id);
+        })
+            ->when($tickets instanceof ScoutBuilder, function (ScoutBuilder $query) {
+                $query->query(function ($query) {
+                    $query->resolvedLast();
+                });
+            }, function (Builder $query) {
+                $query->resolvedLast();
+            })
+            ->orderBy('updated_at', 'desc')
+            ->paginate()
+            ->appends('query', null)
+            ->withQueryString()
+            ->onEachSide(1);
+
+        $tickets->load('project');
+
+        return view('tickets.index', [
+            'tickets' => $tickets,
+            'pageTitle' => $this->pageTitle($project)
+        ]);
+    }
+
+    private function pageTitle(?Project $project)
+    {
+        return $project->id ? $project->name : 'Tickets';
+    }
+}

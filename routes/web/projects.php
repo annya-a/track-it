@@ -1,10 +1,10 @@
 <?php
 
-use App\Modules\Projects\Http\Controllers\ProjectCreateController;
-use App\Modules\Projects\Models\Project;
-use App\Modules\Tickets\Http\Controllers\TicketsIndexController;
+use App\App\Web\Controllers\ProjectCreateController;
+use App\App\Web\Controllers\ProjectsController;
+use App\App\Web\Controllers\TicketsIndexController;
+use App\Domain\Projects\Models\Project;
 use Illuminate\Support\Facades\Route;
-use App\Modules\Projects\Http\Controllers\ProjectsController;
 
 Route::middleware('auth')->group(function() {
     Route::get('/projects', [ProjectsController::class, 'index'])
