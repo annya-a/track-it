@@ -3,20 +3,24 @@
 namespace App\App\Web\Controllers;
 
 use App\App\Web\Requests\RegisteredRequest;
-use App\Domain\Projects\DataTransferObjects\ProjectStoreData;
-use App\Domain\Users\Auth\UserCreator;
+use App\Domain\Users\Actions\CreateUserAction;
+use App\Domain\Users\Actions\UserLoginAction;
 use App\Domain\Users\DataTransferObjects\UserStoreData;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    protected UserCreator $user_register;
+    protected CreateUserAction $create_action;
 
-    public function __construct(UserCreator $user_register)
+    protected UserLoginAction $login_action;
+
+    public function __construct(CreateUserAction $createAction, UserLoginAction $loginAction)
     {
-        $this->user_register = $user_register;
+        $this->create_action = $createAction;
+        $this->login_action = $loginAction;
     }
 
     /**
@@ -34,12 +38,15 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisteredRequest $request): RedirectResponse
     {
-        $data = UserStoreData::from([
+        $storeData = UserStoreData::from([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password
         ]);
-        $this->user_register->create($data);
+
+        $userData = $this->create_action->execute($storeData);
+
+        $this->login_action->execute($userData);
 
         return redirect(RouteServiceProvider::HOME);
     }

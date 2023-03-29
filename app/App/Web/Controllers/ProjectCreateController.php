@@ -4,15 +4,15 @@ namespace App\App\Web\Controllers;
 
 use App\App\Web\Requests\ProjectStoreRequest;
 use App\Domain\Projects\DataTransferObjects\ProjectStoreData;
-use App\Domain\Projects\Services\ProjectCreator;
+use App\Domain\Projects\Actions\CreateProjectAction;
 
 class ProjectCreateController extends Controller
 {
-    protected ProjectCreator $project_creator;
+    protected CreateProjectAction $create_action;
 
-    public function __construct(ProjectCreator $projectCreator)
+    public function __construct(CreateProjectAction $createAction)
     {
-        $this->project_creator = $projectCreator;
+        $this->create_action = $createAction;
     }
 
     public function create()
@@ -28,7 +28,7 @@ class ProjectCreateController extends Controller
             'creator_id' => $request->user()->id
         ]);
 
-        $this->project_creator->create($data);
+        $this->create_action->execute($data);
 
         return redirect()->route('projects.index');
     }

@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Domain\Tickets\Services;
+namespace App\Domain\Tickets\Actions;
 
 use App\Domain\Projects\Models\Project;
+use App\Domain\Tickets\DataTransferObjects\TicketData;
 use App\Domain\Tickets\DataTransferObjects\TicketStoreData;
 use App\Domain\Tickets\Models\Ticket;
 use App\Domain\Users\Models\User;
 
-class TicketCreator
+class CreateTicketAction
 {
-    public function create(TicketStoreData $data): Ticket
+    public function execute(TicketStoreData $data): TicketData
     {
         $ticket = new Ticket;
         $ticket->title = $data->title;
@@ -17,6 +18,6 @@ class TicketCreator
         $ticket->creator_id = $data->creator_id;
         $ticket->save();
 
-        return $ticket;
+        return TicketData::from($ticket);
     }
 }

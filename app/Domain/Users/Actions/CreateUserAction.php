@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Domain\Users\Auth;
+namespace App\Domain\Users\Actions;
 
+use App\Domain\Users\DataTransferObjects\UserData;
 use App\Domain\Users\DataTransferObjects\UserStoreData;
 use App\Domain\Users\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserCreator
+class CreateUserAction
 {
-    public function create(UserStoreData $data)
+    public function execute(UserStoreData $data): UserData
     {
         $user = new User;
         $user->name = $data->name;
@@ -20,6 +20,6 @@ class UserCreator
 
         event(new Registered($user));
 
-        Auth::login($user);
+        return UserData::from($user);
     }
 }
