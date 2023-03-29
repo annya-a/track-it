@@ -2,11 +2,11 @@
 
 namespace App\Domain\Users\Auth;
 
-use Illuminate\Auth\Events\Lockout;
+use App\Domain\Users\DataTransferObjects\UserLoginData;
+use Illuminate\Support\Facades\Auth as AuthBasic;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Auth as AuthBasic;
 
 class Login
 {
@@ -16,11 +16,11 @@ class Login
 
     protected string $ip;
 
-    public function setUp(string $email, string $password, string $ip)
+    public function setUp(UserLoginData $data)
     {
-        $this->email = $email;
-        $this->password = $password;
-        $this->ip = $ip;
+        $this->email = $data->email;
+        $this->password = $data->password;
+        $this->ip = $data->ip;
     }
 
     /**

@@ -5,7 +5,6 @@ namespace App\App\Web\Controllers;
 use App\App\Web\Requests\CompanyStoreRequest;
 use App\Domain\Companies\Actions\CreateCompanyAction;
 use App\Domain\Companies\DataTransferObjects\CompanyStoreData;
-use App\Domain\Companies\Services\CompanyCreator;
 
 class CompanyCreateController extends Controller
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domain\Projects\Models;
+namespace App\Domain\Tickets\QueryBuilders;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
-class CompanyScope implements Scope
+class ProjectCompanyScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -14,7 +14,9 @@ class CompanyScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         if (auth()->hasUser()) {
-            $builder->where('company_id', auth()->user()->company_id);
+            $builder->whereHas('project', function (Builder $query) {
+                $query->where('company_id', auth()->user()->company_id);
+            });
         }
     }
 }

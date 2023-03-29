@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Domain\Projects\Models;
+namespace App\Domain\Projects\QueryBuilders;
 
 use App\Domain\Projects\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Builder;
 
-trait ProjectQueries
+class ProjectQueryBuilder extends Builder
 {
-    public function scopeOpenFirst(Builder $query)
+    public function openFirst(): self
     {
-        $query->orderByRaw(
+        return $this->orderByRaw(
             'case when status = ? then 0
             when status = ? then 1
             end', [ProjectStatus::OPEN->name, ProjectStatus::CLOSED->name]);

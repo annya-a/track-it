@@ -5,7 +5,8 @@ namespace App\Domain\Projects\Models;
 use App\Domain\Companies\Models\Company;
 use App\Domain\Projects\Database\Factories\ProjectFactory;
 use App\Domain\Projects\Enums\ProjectStatus;
-use App\Domain\Tickets\Models\ProjectCompanyScope;
+use App\Domain\Projects\QueryBuilders\CompanyScope;
+use App\Domain\Projects\QueryBuilders\ProjectQueryBuilder;
 use App\Domain\Tickets\Models\Ticket;
 use App\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory, ProjectQueries;
+    use HasFactory;
 
     protected $casts = [
         'status' => ProjectStatus::class,
@@ -45,5 +46,10 @@ class Project extends Model
     protected static function newFactory()
     {
         return new ProjectFactory();
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new ProjectQueryBuilder($query);
     }
 }

@@ -3,11 +3,12 @@
 namespace App\App\Web\Controllers;
 
 use App\App\Web\Requests\LoginRequest;
-use App\Domain\Users\Auth\Login;
+use App\Domain\Users\Actions\AttemptToLoginUserAction;
+use App\Domain\Users\Actions\UserLogoutAction;
+use App\Domain\Users\DataTransferObjects\UserLoginData;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -23,10 +24,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request, Login $login): RedirectResponse
+    public function store(LoginRequest $request, AttemptToLoginUserAction $attemptToLoginAction): RedirectResponse
     {
-        $login->setUp($request->email, $request->password, $request->ip());
-        $login->authenticate();
+        $data = UserLoginData::from([
+            'email' => $request->email,
+            'password' => $request->password,
+            'ip' => $request->ip(),
+        ]);
+
+        $attemptToLoginAction->execute($data);
 
         $request->session()->regenerate();
 
@@ -36,9 +42,9 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request, UserLogoutAction $logoutAction): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        $logoutAction->execute('web');
 
         $request->session()->invalidate();
 

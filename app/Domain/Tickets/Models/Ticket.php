@@ -5,15 +5,16 @@ namespace App\Domain\Tickets\Models;
 use App\Domain\Projects\Models\Project;
 use App\Domain\Tickets\Database\Factories\TicketFactory;
 use App\Domain\Tickets\Enums\TicketStatus;
+use App\Domain\Tickets\QueryBuilders\ProjectCompanyScope;
+use App\Domain\Tickets\QueryBuilders\TicketQueryBuilder;
 use App\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
-use App\Domain\Tickets\Models\TicketQueries;
 
 class Ticket extends Model
 {
-    use HasFactory, Searchable, TicketQueries;
+    use HasFactory, Searchable;
 
     protected $casts = [
         'status' => TicketStatus::class
@@ -47,5 +48,10 @@ class Ticket extends Model
     protected static function newFactory()
     {
         return TicketFactory::new();
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new TicketQueryBuilder($query);
     }
 }

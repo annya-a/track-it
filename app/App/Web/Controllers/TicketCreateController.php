@@ -3,7 +3,7 @@
 namespace App\App\Web\Controllers;
 
 use App\App\Web\Requests\TicketStoreRequest;
-use App\Domain\Projects\Models\Project;
+use App\Domain\Projects\DataTransferObjects\ProjectData;
 use App\Domain\Tickets\DataTransferObjects\TicketStoreData;
 use App\Domain\Tickets\Actions\CreateTicketAction;
 
@@ -16,12 +16,12 @@ class TicketCreateController extends Controller
         $this->create_action = $createAction;
     }
 
-    public function create(Project $project)
+    public function create(ProjectData $project)
     {
         return view('tickets.create', compact('project'));
     }
 
-    public function store(TicketStoreRequest $request, Project $project)
+    public function store(TicketStoreRequest $request, ProjectData $project)
     {
         $data = TicketStoreData::from([
             'title' => $request->title,

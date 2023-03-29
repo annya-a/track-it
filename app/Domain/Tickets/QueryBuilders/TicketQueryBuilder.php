@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Domain\Tickets\Models;
+namespace App\Domain\Tickets\QueryBuilders;
 
 use App\Domain\Tickets\Enums\TicketStatus;
 use Illuminate\Database\Eloquent\Builder;
 
-trait TicketQueries
+class TicketQueryBuilder extends Builder
 {
-    public function scopeResolvedLast(Builder $query)
+    public function resolvedLast(): self
     {
-        $query->orderByRaw(
+        return $this->orderByRaw(
             'case when status = ? then 1
             else 0
             end', TicketStatus::RESOLVED->name);
