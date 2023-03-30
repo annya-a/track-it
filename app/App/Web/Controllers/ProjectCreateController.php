@@ -25,7 +25,7 @@ class ProjectCreateController extends Controller
         $data = ProjectStoreData::from([
             'name' => $request->name,
             'company_id' => $request->user()->company_id,
-            'creator_id' => $request->user()->id
+            'creator_id' => $request->user()->id,
         ]);
 
         $this->create_action->execute($data);

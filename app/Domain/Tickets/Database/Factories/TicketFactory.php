@@ -25,11 +25,11 @@ class TicketFactory extends Factory
         return [
             'title' => Str::replace('.', '', $this->faker->sentence),
             'status' => $this->faker->randomElement([
-                TicketStatus::NEW,
-                TicketStatus::IN_PROGRESS,
-                TicketStatus::ASSIGNED,
-                TicketStatus::PENDING,
-                TicketStatus::RESOLVED
+                TicketStatus::new(),
+                TicketStatus::in_progress(),
+                TicketStatus::assigned(),
+                TicketStatus::pending(),
+                TicketStatus::resolved(),
             ]),
             'creator_id' => User::factory(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),

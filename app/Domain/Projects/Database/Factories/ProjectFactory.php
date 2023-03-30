@@ -7,7 +7,8 @@ use App\Domain\Projects\Enums\ProjectStatus;
 use App\Domain\Projects\Models\Project;
 use App\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Spatie\Enum\Faker\FakerEnumProvider;
+use Faker\Generator as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Domain\Projects\Models\Project>
@@ -27,7 +28,7 @@ class ProjectFactory extends Factory
             'name' => $this->faker->company,
             'creator_id' => User::factory(),
             'company_id' => Company::factory(),
-            'status' => $this->faker->randomElement([ProjectStatus::OPEN, ProjectStatus::CLOSED]),
+            'status' => $this->faker->randomElement([ProjectStatus::open(), ProjectStatus::closed()]),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];

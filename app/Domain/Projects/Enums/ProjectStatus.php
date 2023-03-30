@@ -2,16 +2,19 @@
 
 namespace App\Domain\Projects\Enums;
 
-enum ProjectStatus
-{
-    case OPEN;
-    case CLOSED;
+use Spatie\Enum\Laravel\Enum;
 
-    public function label(): string
+/**
+ * @method static self open()
+ * @method static self closed()
+ */
+final class ProjectStatus extends Enum
+{
+    protected static function labels(): array
     {
-        return match($this) {
-            ProjectStatus::OPEN => 'Open',
-            ProjectStatus::CLOSED => 'Closed',
-        };
+        return [
+            'open' => 'Open',
+            'closed' => 'Closed',
+        ];
     }
 }

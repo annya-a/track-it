@@ -1,6 +1,7 @@
 @props([
     'tickets',
     'pageTitle',
+    'searchAction' => route('tickets.index'),
 ])
 
 @php
@@ -9,7 +10,7 @@
      */
 @endphp
 
-<x-layout.basic :pageTitle="$pageTitle">
+<x-layout.basic :pageTitle="$pageTitle" :searchAction="$searchAction">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">

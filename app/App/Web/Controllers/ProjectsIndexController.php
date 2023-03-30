@@ -4,7 +4,7 @@ namespace App\App\Web\Controllers;
 
 use App\Domain\Projects\Actions\GetListOfAllProjectsAction;
 
-class ProjectsController extends Controller
+class ProjectsIndexController extends Controller
 {
     public GetListOfAllProjectsAction $list_action;
 

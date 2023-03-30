@@ -11,7 +11,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.0",
         "laravel/tinker": "^2.8",
-        "spatie/laravel-data": "^3.2"
+        "spatie/laravel-data": "^3.2",
+        "spatie/laravel-enum": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

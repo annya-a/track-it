@@ -12,6 +12,6 @@ class ProjectQueryBuilder extends Builder
         return $this->orderByRaw(
             'case when status = ? then 0
             when status = ? then 1
-            end', [ProjectStatus::OPEN->name, ProjectStatus::CLOSED->name]);
+            end', [ProjectStatus::open(), ProjectStatus::closed()]);
     }
 }

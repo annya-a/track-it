@@ -2,22 +2,25 @@
 
 namespace App\Domain\Tickets\Enums;
 
-enum TicketStatus
-{
-    case NEW;
-    case ASSIGNED;
-    case IN_PROGRESS;
-    case PENDING;
-    case RESOLVED;
+use Spatie\Enum\Laravel\Enum;
 
-    public function label(): string
+/**
+ * @method static self new()
+ * @method static self assigned()
+ * @method static self in_progress()
+ * @method static self pending()
+ * @method static self resolved()
+ */
+final class TicketStatus extends Enum
+{
+    public static function labels(): array
     {
-        return match($this){
-            TicketStatus::NEW => 'New',
-            TicketStatus::ASSIGNED => 'Assigned',
-            TicketStatus::IN_PROGRESS => 'In Progress',
-            TicketStatus::PENDING => 'Pending',
-            TicketStatus::RESOLVED => 'Resolved',
-        };
+        return [
+            'new' => 'New',
+            'assigned' => 'Assigned',
+            'in_progress' => 'In Progress',
+            'pending' => 'Pending',
+            'resolved' => 'Resolved',
+        ];
     }
 }

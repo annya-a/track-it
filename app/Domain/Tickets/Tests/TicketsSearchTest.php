@@ -71,4 +71,32 @@ class TicketsSearchTest extends TestCase
         $response = $this->actingAs($user)->get('tickets?search=first');
         $response->assertDontSeeText('My first Ticket');
     }
+
+    /**
+     * When user searches tickets on project page he sees only tickets which belongs to this project.
+     */
+    public function test_when_users_searches_tickets_on_project_page_he_sees_only_tickets_which_belongs_to_this_project()
+    {
+        $company = Company::factory()->create();
+        $user = User::factory()
+            ->for($company)
+            ->create();
+
+        $projects = Project::factory()
+            ->for($company)
+            ->count(2)
+            ->create();
+
+        Ticket::factory(['title' => 'Visible ticket.'])
+            ->for($projects->first())
+            ->create();
+
+        Ticket::factory(['title' => "Invisible ticket."])
+            ->for($projects->last())
+            ->create();
+
+        $response = $this->actingAs($user)->get("projects/{$projects->first()->id}/tickets?search=ticket");
+        $response->assertSeeText('Visible ticket.');
+        $response->assertDontSeeText('Invisible ticket.');
+    }
 }

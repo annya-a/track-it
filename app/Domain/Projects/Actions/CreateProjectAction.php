@@ -4,6 +4,7 @@ namespace App\Domain\Projects\Actions;
 
 use App\Domain\Projects\DataTransferObjects\ProjectData;
 use App\Domain\Projects\DataTransferObjects\ProjectStoreData;
+use App\Domain\Projects\Enums\ProjectStatus;
 use App\Domain\Projects\Models\Project;
 
 class CreateProjectAction
@@ -14,6 +15,7 @@ class CreateProjectAction
         $project->name = $data->name;
         $project->creator_id = $data->creator_id;
         $project->company_id = $data->company_id;
+        $project->status = ProjectStatus::open();
         $project->save();
 
         return ProjectData::from($project);

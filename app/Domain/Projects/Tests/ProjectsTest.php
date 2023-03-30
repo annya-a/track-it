@@ -76,6 +76,7 @@ class ProjectsTest extends TestCase
         $response->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('projects', ['creator_id' => $user->id, 'name' => 'My project']);
+        $response->assertRedirect('/projects');
     }
 
     /**
