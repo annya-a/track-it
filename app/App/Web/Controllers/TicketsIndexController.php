@@ -2,6 +2,7 @@
 
 namespace App\App\Web\Controllers;
 
+use App\Domain\Projects\Actions\GetProjectAction;
 use App\Domain\Projects\DataTransferObjects\ProjectData;
 use App\Domain\Projects\Models\Project;
 use App\Domain\Tickets\Actions\GetTicketsListAction;
@@ -12,16 +13,19 @@ class TicketsIndexController extends Controller
 {
     protected GetTicketsListAction $list_action;
 
-    public function __construct(GetTicketsListAction $listAction)
+    protected GetProjectAction $get_project_action;
+
+    public function __construct(GetTicketsListAction $listAction, GetProjectAction $getProjectAction)
     {
         $this->list_action = $listAction;
+        $this->get_project_action = $getProjectAction;
     }
 
     /**
      * Get list of tickets.
      *
      * @param Request $request
-     * @param int|null $projectId
+     * @param int|null $project
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      *
      */
@@ -32,7 +36,7 @@ class TicketsIndexController extends Controller
             'project_id' => $project,
         ]);
 
-        $projectData = $project ? ProjectData::from(Project::find($project)) : null;
+        $projectData = $project ? $this->get_project_action->execute($project) : null;
 
         $tickets = $this->list_action->execute($data);
 
