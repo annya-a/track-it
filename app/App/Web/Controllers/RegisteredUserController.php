@@ -8,7 +8,6 @@ use App\Domain\Users\Actions\UserLoginAction;
 use App\Domain\Users\DataTransferObjects\UserStoreData;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller

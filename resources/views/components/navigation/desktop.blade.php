@@ -1,6 +1,7 @@
 @php
     use App\Domain\Companies\Models\Company;
     use App\Domain\Projects\Models\Project;
+    use App\Domain\Tickets\Models\Ticket;
 @endphp
 
 <ul class="mt-6">
@@ -65,6 +66,17 @@
         </a>
     </div>
 @endcan
+
+@if (request()->user()->can('create', Ticket::class) && request()->route()->hasParameter('project'))
+    <div class="px-6 my-6">
+        <a href="{{ route('tickets.create', request()->route()->parameter('project')) }}"
+           class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        >
+            Create ticket
+            <span class="ml-2" aria-hidden="true">+</span>
+        </a>
+    </div>
+@endif
 
 @can('create', Project::class)
     <div class="px-6 my-6">

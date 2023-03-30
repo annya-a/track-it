@@ -4,7 +4,6 @@ namespace App\App\Web\Controllers;
 
 use App\Domain\Projects\Actions\GetProjectAction;
 use App\Domain\Projects\DataTransferObjects\ProjectData;
-use App\Domain\Projects\Models\Project;
 use App\Domain\Tickets\Actions\GetTicketsListAction;
 use App\Domain\Tickets\DataTransferObjects\TicketsListFetchData;
 use Illuminate\Http\Request;
