@@ -2,6 +2,8 @@
 
 namespace App\Domain\Tickets\DataTransferObjects;
 
+use App\Domain\Projects\DataTransferObjects\ProjectData;
+use App\Domain\Users\DataTransferObjects\UserData;
 use Illuminate\Http\Request;
 use Spatie\LaravelData\Attributes\Validation\IntegerType;
 use Spatie\LaravelData\Attributes\Validation\Max;
@@ -17,7 +19,7 @@ class TicketStoreData extends Data
         #[IntegerType]
         public int $project_id,
         #[IntegerType]
-        public int $creator_id,
+        public  int $creator_id,
     )
     {
     }

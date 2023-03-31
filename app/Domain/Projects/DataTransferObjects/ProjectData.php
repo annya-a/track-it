@@ -2,7 +2,9 @@
 
 namespace App\Domain\Projects\DataTransferObjects;
 
+use App\Domain\Companies\DataTransferObjects\CompanyData;
 use App\Domain\Projects\Enums\ProjectStatus;
+use App\Domain\Users\DataTransferObjects\UserData;
 use Carbon\Carbon;
 use Spatie\LaravelData\Attributes\Validation\GreaterThan;
 use Spatie\LaravelData\Attributes\Validation\IntegerType;
@@ -13,6 +15,8 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Lazy;
+use Spatie\LaravelData\Optional;
 
 class ProjectData extends Data
 {
@@ -30,7 +34,9 @@ class ProjectData extends Data
         #[Required, WithCast(DateTimeInterfaceCast::class)]
         public Carbon $created_at,
         #[Required, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $updated_at
+        public Carbon $updated_at,
+        public UserData|Lazy|null $creator,
+        public CompanyData|Lazy|null $company,
     ) {
     }
 }

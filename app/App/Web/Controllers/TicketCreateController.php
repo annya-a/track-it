@@ -3,6 +3,7 @@
 namespace App\App\Web\Controllers;
 
 use App\App\Web\Requests\TicketStoreRequest;
+use App\Domain\Projects\Actions\GetProjectAction;
 use App\Domain\Projects\DataTransferObjects\ProjectData;
 use App\Domain\Projects\Models\Project;
 use App\Domain\Tickets\DataTransferObjects\TicketStoreData;
@@ -12,17 +13,35 @@ class TicketCreateController extends Controller
 {
     protected CreateTicketAction $create_action;
 
-    public function __construct(CreateTicketAction $createAction)
+    protected GetProjectAction $get_project_action;
+
+    public function __construct(CreateTicketAction $createAction, GetProjectAction $getProjectAction)
     {
         $this->create_action = $createAction;
+        $this->get_project_action = $getProjectAction;
     }
 
+    /**
+     * Create ticket page.
+     *
+     * @param int $project
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create(int $project)
     {
-        $project = ProjectData::from(Project::find($project));
-        return view('tickets.create', compact('project'));
+        return view('tickets.create', [
+            'project' => $this->get_project_action->execute($project)
+        ]);
     }
 
+    /**
+     * Store project.
+     *
+     * @param TicketStoreRequest $request
+     * @param int $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(TicketStoreRequest $request, int $project)
     {
         $data = TicketStoreData::from([

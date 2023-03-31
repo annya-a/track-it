@@ -20,6 +20,8 @@ class CreateTicketAction
         $ticket->status = TicketStatus::new();
         $ticket->save();
 
+        $ticket->load(['project', 'creator']);
+
         return TicketData::from($ticket);
     }
 }

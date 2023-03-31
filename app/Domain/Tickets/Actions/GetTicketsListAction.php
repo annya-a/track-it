@@ -2,10 +2,13 @@
 
 namespace App\Domain\Tickets\Actions;
 
+use App\Domain\Tickets\DataTransferObjects\TicketData;
 use App\Domain\Tickets\DataTransferObjects\TicketsListFetchData;
 use App\Domain\Tickets\Models\Ticket;
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Scout\Builder as ScoutBuilder;
+use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\PaginatedDataCollection;
 
 class GetTicketsListAction
 {
@@ -15,11 +18,9 @@ class GetTicketsListAction
      * @param TicketsListFetchData $data
      * @return mixed
      */
-    public function execute(TicketsListFetchData $data)
+    public function execute(TicketsListFetchData $data): PaginatedDataCollection
     {
-        $query = $this->queryBuilder($data->search);
-
-        return $query
+        $tickets = $this->queryBuilder($data->search)
             ->when($data->project_id, function ($query) use ($data) {
                 $query->filterByProject($data->project_id);
             })
@@ -29,6 +30,10 @@ class GetTicketsListAction
             ->appends('query', null)
             ->withQueryString()
             ->onEachSide(1);
+
+        $tickets->load(['project', 'creator']);
+
+        return TicketData::collection($tickets);
     }
 
     /**

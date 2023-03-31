@@ -10,8 +10,9 @@ use App\Domain\Projects\Models\Project;
  */
 class GetProjectAction
 {
-    public function execute(int $projectId): ProjectData
+    public function execute(int $project): ProjectData
     {
-        return ProjectData::from(Project::find($projectId));
+        $project = Project::find($project);
+        return ProjectData::from($project);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\App\Web\Controllers;
 
-use App\Domain\Projects\Actions\GetListOfAllProjectsAction;
+use App\Domain\Projects\Actions\GetListOfProjectsAction;
 
 class ProjectsIndexController extends Controller
 {
-    public GetListOfAllProjectsAction $list_action;
+    public GetListOfProjectsAction $list_action;
 
-    public function __construct(GetListOfAllProjectsAction $listAction)
+    public function __construct(GetListOfProjectsAction $listAction)
     {
         $this->list_action = $listAction;
     }

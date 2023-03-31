@@ -2,16 +2,17 @@
 
 namespace App\Domain\Tickets\Models;
 
+use App\Domain\Projects\DataTransferObjects\ProjectData;
 use App\Domain\Projects\Models\Project;
 use App\Domain\Tickets\Database\Factories\TicketFactory;
 use App\Domain\Tickets\Enums\TicketStatus;
 use App\Domain\Tickets\QueryBuilders\ProjectCompanyScope;
 use App\Domain\Tickets\QueryBuilders\TicketQueryBuilder;
 use App\Domain\Tickets\QueryBuilders\TicketScoutQueryBuilder;
+use App\Domain\Users\DataTransferObjects\UserData;
 use App\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Builder;
 use Laravel\Scout\Searchable;
 
 class Ticket extends Model
@@ -19,7 +20,9 @@ class Ticket extends Model
     use HasFactory, Searchable;
 
     protected $casts = [
-        'status' => TicketStatus::class
+        'status' => TicketStatus::class,
+        'project' => ProjectData::class,
+        'creator' => UserData::class,
     ];
 
     public function project()
@@ -37,19 +40,6 @@ class Ticket extends Model
         return [
             'title' => $this->title,
         ];
-    }
-
-    /**
-     * The "booted" method of the model.
-     */
-    protected static function booted(): void
-    {
-        static::addGlobalScope(new ProjectCompanyScope);
-    }
-
-    protected static function newFactory()
-    {
-        return TicketFactory::new();
     }
 
     public function newEloquentBuilder($query)
@@ -72,5 +62,18 @@ class Ticket extends Model
             'callback' => $callback,
             'softDelete'=> static::usesSoftDelete() && config('scout.soft_delete', false),
         ]);
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new ProjectCompanyScope);
+    }
+
+    protected static function newFactory()
+    {
+        return TicketFactory::new();
     }
 }

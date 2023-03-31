@@ -39,8 +39,6 @@ class TicketsIndexController extends Controller
 
         $tickets = $this->list_action->execute($data);
 
-        $tickets->load('project');
-
         return view('tickets.index', [
             'tickets' => $tickets,
             'pageTitle' => $this->getPageTitle($projectData),

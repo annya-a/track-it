@@ -155,7 +155,7 @@ class ProjectsTest extends TestCase
     /**
      * On project page user doesn't see ticket which doesn't belong to project.
      */
-    public function test_on_project_page_user_sees_ticket_which_doesnt_belong_to_project()
+    public function test_on_project_page_user_doesnt_see_ticket_which_doesnt_belong_to_project()
     {
         $company = $this->createCompany();
         $user = $this->createUserWithCompany($company);
