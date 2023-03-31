@@ -17,22 +17,22 @@ class TicketCreateController extends Controller
         $this->create_action = $createAction;
     }
 
-    public function create(int $projectId)
+    public function create(int $project)
     {
-        $project = ProjectData::from(Project::find($projectId));
+        $project = ProjectData::from(Project::find($project));
         return view('tickets.create', compact('project'));
     }
 
-    public function store(TicketStoreRequest $request, int $projectId)
+    public function store(TicketStoreRequest $request, int $project)
     {
         $data = TicketStoreData::from([
             'title' => $request->title,
-            'project_id' => $projectId,
+            'project_id' => $project,
             'creator_id' => $request->user()->id,
         ]);
 
         $this->create_action->execute($data);
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.show', $project);
     }
 }
