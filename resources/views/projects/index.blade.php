@@ -1,6 +1,6 @@
 @php
     /**
-     * @var \Illuminate\Contracts\Pagination\LengthAwarePaginator $projects
+     * @var \Spatie\LaravelData\PaginatedDataCollection $projects
      */
 @endphp
 
@@ -23,7 +23,7 @@
                 @foreach($projects as $project)
                     <tr class="text-gray-700 dark:text-gray-400">
                         <td class="px-4 py-3 text-sm">
-                            <a href="{{ route('projects.show', $project) }}"
+                            <a href="{{ route('projects.show', $project->id) }}"
                                class="font-medium text-purple-600 dark:text-purple-400 hover:underline"
                             >{{ $project->name }}</a>
                         </td>
@@ -38,7 +38,8 @@
                 </tbody>
             </table>
 
-            {{ $projects->onEachSide(1)->links() }}
+            {{ $projects->items()->links() }}
+
         </div>
     </div>
 </x-layout.basic>

@@ -1,8 +1,8 @@
 <?php
 
-use App\Modules\Tickets\Http\Controllers\TicketsIndexController;
-use App\Modules\Tickets\Http\Controllers\TicketCreateController;
-use App\Modules\Tickets\Models\Ticket;
+use App\Web\Tickets\Controllers\TicketCreateController;
+use App\Web\Tickets\Controllers\TicketsIndexController;
+use Domain\Tickets\Models\Ticket;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {

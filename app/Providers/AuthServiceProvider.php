@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-use App\Modules\Companies\Models\Company;
-use App\Modules\Companies\Policies\CompanyPolicy;
-use App\Modules\Projects\Models\Project;
-use App\Modules\Projects\Policies\ProjectPolicy;
-use App\Modules\Tickets\Models\Ticket;
-use App\Modules\Tickets\Policies\TicketPolicy;
+use Domain\Companies\Models\Company;
+use Domain\Companies\Policies\CompanyPolicy;
+use Domain\Projects\Models\Project;
+use Domain\Projects\Policies\ProjectPolicy;
+use Domain\Tickets\Models\Ticket;
+use Domain\Tickets\Policies\TicketPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

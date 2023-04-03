@@ -1,8 +1,9 @@
 <?php
 
-use App\Modules\Users\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Web\Users\Controllers\LoginController;
+use App\Web\Users\Controllers\LogoutController;
+use App\Web\Users\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
-use App\Modules\Users\Http\Controllers\Auth\RegisteredUserController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -10,12 +11,12 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    Route::get('/login', [LoginController::class, 'create'])
         ->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('/login', [LoginController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function() {
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    Route::post('/logout', [LogoutController::class, 'destroy'])
         ->name('logout');
 });

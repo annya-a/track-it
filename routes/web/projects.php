@@ -1,13 +1,13 @@
 <?php
 
-use App\Modules\Projects\Http\Controllers\ProjectCreateController;
-use App\Modules\Projects\Models\Project;
-use App\Modules\Tickets\Http\Controllers\TicketsIndexController;
+use App\Web\Projects\Controllers\ProjectCreateController;
+use App\Web\Projects\Controllers\ProjectsIndexController;
+use App\Web\Tickets\Controllers\TicketsIndexController;
+use Domain\Projects\Models\Project;
 use Illuminate\Support\Facades\Route;
-use App\Modules\Projects\Http\Controllers\ProjectsController;
 
 Route::middleware('auth')->group(function() {
-    Route::get('/projects', [ProjectsController::class, 'index'])
+    Route::get('/projects', [ProjectsIndexController::class, 'index'])
         ->name('projects.index');
     Route::get('/projects/create', [ProjectCreateController::class, 'create'])
         ->can('create', Project::class)

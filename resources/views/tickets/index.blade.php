@@ -1,15 +1,16 @@
 @props([
     'tickets',
     'pageTitle',
+    'searchAction' => route('tickets.index'),
 ])
 
 @php
     /**
-     * @var \Illuminate\Contracts\Pagination\LengthAwarePaginator $tickets
+     * @var \Spatie\LaravelData\PaginatedDataCollection $tickets
      */
 @endphp
 
-<x-layout.basic :pageTitle="$pageTitle">
+<x-layout.basic :pageTitle="$pageTitle" :searchAction="$searchAction">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
@@ -35,7 +36,7 @@
                             <x-tickets.status :status="$ticket->status" />
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            <a href="{{ route('projects.show', $ticket->project) }}"
+                            <a href="{{ route('projects.show', $ticket->project->id) }}"
                                class="font-medium text-purple-600 dark:text-purple-400 hover:underline"
                             >{{ $ticket->project->name }}</a>
                         </td>
@@ -47,7 +48,7 @@
                 </tbody>
             </table>
 
-            {{ $tickets->links() }}
+            {{ $tickets->items()->links() }}
         </div>
     </div>
 </x-layout.basic>

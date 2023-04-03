@@ -1,6 +1,6 @@
 @php
     /**
-     * @var \App\Modules\Projects\Models\Project $project
+     * @var \Domain\Projects\Models\Project $project
      */
 @endphp
 
