@@ -1,8 +1,8 @@
 <?php
 
-use App\App\Web\Controllers\CompanyCreateController as CompanyCreateController;
-use App\App\Web\Controllers\TicketsIndexController;
-use App\Domain\Companies\Models\Company;
+use App\Web\Controllers\CompanyCreateController as CompanyCreateController;
+use App\Web\Controllers\TicketsIndexController;
+use Domain\Companies\Models\Company;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], __DIR__ . '/web/projects.php');

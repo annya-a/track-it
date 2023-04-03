@@ -1,9 +1,9 @@
 <?php
 
-use App\App\Web\Controllers\ProjectCreateController;
-use App\App\Web\Controllers\ProjectsIndexController;
-use App\App\Web\Controllers\TicketsIndexController;
-use App\Domain\Projects\Models\Project;
+use App\Web\Controllers\ProjectCreateController;
+use App\Web\Controllers\ProjectsIndexController;
+use App\Web\Controllers\TicketsIndexController;
+use Domain\Projects\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function() {

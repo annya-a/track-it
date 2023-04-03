@@ -1,7 +1,5 @@
 @php
-    use App\Domain\Companies\Models\Company;
-    use App\Domain\Projects\Models\Project;
-    use App\Domain\Tickets\Models\Ticket;
+    use Domain\Companies\Models\Company;use Domain\Projects\Models\Project;use Domain\Tickets\Models\Ticket;
 @endphp
 
 <ul class="mt-6">

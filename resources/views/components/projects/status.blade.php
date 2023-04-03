@@ -1,5 +1,5 @@
 @php
-    use App\Domain\Projects\Enums\ProjectStatus;
+    use Domain\Projects\Enums\ProjectStatus;
 
     /**
      * @var ProjectStatus $status
