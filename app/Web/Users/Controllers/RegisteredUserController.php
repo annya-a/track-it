@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Users\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Web\Requests\RegisteredRequest;
+use App\Web\Users\Requests\RegisteredRequest;
 use Domain\Users\Actions\CreateUserAction;
 use Domain\Users\Actions\UserLoginAction;
 use Domain\Users\DataTransferObjects\UserStoreData;

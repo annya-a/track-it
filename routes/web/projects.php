@@ -1,8 +1,8 @@
 <?php
 
-use App\Web\Controllers\ProjectCreateController;
-use App\Web\Controllers\ProjectsIndexController;
-use App\Web\Controllers\TicketsIndexController;
+use App\Web\Projects\Controllers\ProjectCreateController;
+use App\Web\Projects\Controllers\ProjectsIndexController;
+use App\Web\Tickets\Controllers\TicketsIndexController;
 use Domain\Projects\Models\Project;
 use Illuminate\Support\Facades\Route;
 

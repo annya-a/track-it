@@ -1,7 +1,7 @@
 <?php
 
-use App\Web\Controllers\CompanyCreateController as CompanyCreateController;
-use App\Web\Controllers\TicketsIndexController;
+use App\Web\Companies\Controllers\CompanyCreateController as CompanyCreateController;
+use App\Web\Tickets\Controllers\TicketsIndexController;
 use Domain\Companies\Models\Company;
 use Illuminate\Support\Facades\Route;
 

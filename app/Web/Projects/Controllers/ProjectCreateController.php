@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Projects\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Web\Requests\ProjectStoreRequest;
+use App\Web\Projects\Requests\ProjectStoreRequest;
 use Domain\Projects\Actions\CreateProjectAction;
 use Domain\Projects\DataTransferObjects\ProjectStoreData;
 

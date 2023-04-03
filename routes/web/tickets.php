@@ -1,7 +1,7 @@
 <?php
 
-use App\Web\Controllers\TicketCreateController;
-use App\Web\Controllers\TicketsIndexController;
+use App\Web\Tickets\Controllers\TicketCreateController;
+use App\Web\Tickets\Controllers\TicketsIndexController;
 use Domain\Tickets\Models\Ticket;
 use Illuminate\Support\Facades\Route;
 

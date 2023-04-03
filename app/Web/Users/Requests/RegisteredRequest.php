@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Web\Requests;
+namespace App\Web\Users\Requests;
 
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
-class TicketStoreRequest extends FormRequest
+class RegisteredRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +24,10 @@ class TicketStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'policy' => ['required', 'accepted'],
         ];
     }
 }

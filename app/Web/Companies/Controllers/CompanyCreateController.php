@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Companies\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Web\Requests\CompanyStoreRequest;
+use App\Web\Companies\Requests\CompanyStoreRequest;
 use Domain\Companies\Actions\CreateCompanyAction;
 use Domain\Companies\DataTransferObjects\CompanyStoreData;
 

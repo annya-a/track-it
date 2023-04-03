@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Users\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Web\Requests\LoginRequest;
+use App\Web\Users\Requests\LoginRequest;
 use Domain\Users\Actions\AttemptToLoginUserAction;
 use Domain\Users\DataTransferObjects\UserLoginData;
 use Illuminate\Http\RedirectResponse;

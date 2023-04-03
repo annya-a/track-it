@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Projects\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domain\Projects\Actions\GetListOfProjectsAction;

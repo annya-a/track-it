@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Tickets\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Web\Requests\TicketStoreRequest;
+use App\Web\Tickets\Requests\TicketStoreRequest;
 use Domain\Projects\Actions\GetProjectAction;
 use Domain\Tickets\Actions\CreateTicketAction;
 use Domain\Tickets\DataTransferObjects\TicketStoreData;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Web\Controllers;
+namespace App\Web\Users\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domain\Users\Actions\UserLogoutAction;
