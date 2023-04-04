@@ -3,7 +3,7 @@
 namespace Domain\Tickets\Actions;
 
 use Domain\Tickets\DataTransferObjects\TicketData;
-use Domain\Tickets\DataTransferObjects\TicketsListFetchData;
+use Domain\Tickets\DataTransferObjects\TicketsListData;
 use Domain\Tickets\Models\Ticket;
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Scout\Builder as ScoutBuilder;
@@ -14,10 +14,10 @@ class GetTicketsListAction
     /**
      * Get list of tickets by parameters.
      *
-     * @param TicketsListFetchData $data
+     * @param TicketsListData $data
      * @return mixed
      */
-    public function execute(TicketsListFetchData $data): PaginatedDataCollection
+    public function execute(TicketsListData $data): PaginatedDataCollection
     {
         $tickets = $this->queryBuilder($data->search)
             ->when($data->project_id, function ($query) use ($data) {

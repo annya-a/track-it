@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Domain\Projects\Actions\GetProjectAction;
 use Domain\Projects\DataTransferObjects\ProjectData;
 use Domain\Tickets\Actions\GetTicketsListAction;
-use Domain\Tickets\DataTransferObjects\TicketsListFetchData;
+use Domain\Tickets\DataTransferObjects\TicketsListData;
 use Illuminate\Http\Request;
 
 class TicketsIndexController extends Controller
@@ -31,7 +31,7 @@ class TicketsIndexController extends Controller
      */
     public function index(Request $request, ?int $project = null)
     {
-        $data = TicketsListFetchData::from([
+        $data = TicketsListData::from([
             'search' => $request->search,
             'project_id' => $project,
         ]);

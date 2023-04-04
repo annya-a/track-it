@@ -5,7 +5,7 @@ namespace App\Web\Projects\Controllers;
 use App\Http\Controllers\Controller;
 use App\Web\Projects\Requests\ProjectStoreRequest;
 use Domain\Projects\Actions\CreateProjectAction;
-use Domain\Projects\DataTransferObjects\ProjectStoreData;
+use Domain\Projects\DataTransferObjects\ProjectData;
 
 class ProjectCreateController extends Controller
 {
@@ -23,7 +23,7 @@ class ProjectCreateController extends Controller
 
     public function store(ProjectStoreRequest $request)
     {
-        $data = ProjectStoreData::from([
+        $data = ProjectData::from([
             'name' => $request->name,
             'company_id' => $request->user()->company_id,
             'creator_id' => $request->user()->id,

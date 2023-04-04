@@ -5,7 +5,7 @@ namespace App\Web\Companies\Controllers;
 use App\Http\Controllers\Controller;
 use App\Web\Companies\Requests\CompanyStoreRequest;
 use Domain\Companies\Actions\CreateCompanyAction;
-use Domain\Companies\DataTransferObjects\CompanyStoreData;
+use Domain\Companies\DataTransferObjects\CompanyData;
 
 class CompanyCreateController extends Controller
 {
@@ -23,7 +23,7 @@ class CompanyCreateController extends Controller
 
     public function store(CompanyStoreRequest $request)
     {
-        $data = CompanyStoreData::from([
+        $data = CompanyData::from([
             'name' => $request->name,
             'creator_id' => $request->user()->id
         ]);

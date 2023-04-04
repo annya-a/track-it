@@ -3,13 +3,12 @@
 namespace Domain\Tickets\Actions;
 
 use Domain\Tickets\DataTransferObjects\TicketData;
-use Domain\Tickets\DataTransferObjects\TicketStoreData;
 use Domain\Tickets\Enums\TicketStatus;
 use Domain\Tickets\Models\Ticket;
 
 class CreateTicketAction
 {
-    public function execute(TicketStoreData $data): TicketData
+    public function execute(TicketData $data): TicketData
     {
         $ticket = new Ticket;
         $ticket->title = $data->title;

@@ -7,7 +7,7 @@ use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Attributes\Validation\StringType;
 use Spatie\LaravelData\Data;
 
-class TicketsListFetchData extends Data
+class TicketsListData extends Data
 {
     public function __construct(
         #[Nullable, StringType]

@@ -20,22 +20,22 @@ use Spatie\LaravelData\Lazy;
 class TicketData extends Data
 {
     public function __construct(
-        #[Required, IntegerType, GreaterThan(0)]
-        public int $id,
+        #[IntegerType, GreaterThan(0)]
+        public ?int $id,
         #[Required, StringType, Max(255)]
         public string $title,
-        #[Required, WithCast(EnumCast::class)]
-        public TicketStatus $status,
+        #[WithCast(EnumCast::class)]
+        public ?TicketStatus $status,
         #[Required, IntegerType, GreaterThan(0)]
         public int $project_id,
         #[Required, IntegerType, GreaterThan(0)]
         public int $creator_id,
-        #[Required, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $created_at,
-        #[Required, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $updated_at,
-        public ProjectData|Lazy|null $project,
-        public UserData|Lazy|null $creator,
+        #[WithCast(DateTimeInterfaceCast::class)]
+        public ?Carbon $created_at,
+        #[WithCast(DateTimeInterfaceCast::class)]
+        public ?Carbon $updated_at,
+        public ?ProjectData $project,
+        public ?UserData $creator,
     )
     {
     }

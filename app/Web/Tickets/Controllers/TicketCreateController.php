@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Web\Tickets\Requests\TicketStoreRequest;
 use Domain\Projects\Actions\GetProjectAction;
 use Domain\Tickets\Actions\CreateTicketAction;
-use Domain\Tickets\DataTransferObjects\TicketStoreData;
+use Domain\Tickets\DataTransferObjects\TicketData;
 
 class TicketCreateController extends Controller
 {
@@ -43,7 +43,7 @@ class TicketCreateController extends Controller
      */
     public function store(TicketStoreRequest $request, int $project)
     {
-        $data = TicketStoreData::from([
+        $data = TicketData::from([
             'title' => $request->title,
             'project_id' => $project,
             'creator_id' => $request->user()->id,

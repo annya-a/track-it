@@ -20,22 +20,22 @@ use Spatie\LaravelData\Lazy;
 class ProjectData extends Data
 {
     public function __construct(
-        #[Required, IntegerType, GreaterThan(0)]
-        public int $id,
+        #[IntegerType, GreaterThan(0)]
+        public ?int $id,
         #[Required, StringType, Max(255)]
         public string $name,
         #[Required, IntegerType, GreaterThan(0)]
         public int $creator_id,
-        #[Required, IntegerType, GreaterThan(0)]
-        public int $company_id,
-        #[Required, WithCast(EnumCast::class)]
-        public ProjectStatus $status,
-        #[Required, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $created_at,
-        #[Required, WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $updated_at,
-        public UserData|Lazy|null $creator,
-        public CompanyData|Lazy|null $company,
+        #[IntegerType, GreaterThan(0)]
+        public ?int $company_id,
+        #[WithCast(EnumCast::class)]
+        public ?ProjectStatus $status,
+        #[WithCast(DateTimeInterfaceCast::class)]
+        public ?Carbon $created_at,
+        #[WithCast(DateTimeInterfaceCast::class)]
+        public ?Carbon $updated_at,
+        public ?UserData $creator,
+        public ?CompanyData $company,
     ) {
     }
 }
