@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Companies\Tests;
+namespace App\Tests\Companies;
 
 use Domain\Companies\Models\Company;
 use Domain\Users\Models\User;

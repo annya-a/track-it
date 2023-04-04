@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Projects\Tests;
+namespace App\Tests\Projects;
 
 use Domain\Companies\Models\Company;
 use Domain\Projects\Models\Project;

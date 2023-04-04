@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tickets\Tests;
+namespace App\Tests\Tickets;
 
 use Domain\Companies\Models\Company;
 use Domain\Projects\Models\Project;
