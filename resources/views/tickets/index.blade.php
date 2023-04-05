@@ -22,6 +22,7 @@
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Project</th>
                     <th class="px-4 py-3">Updated</th>
+                    <th class="px-4 py-3">Actions</th>
                 </tr>
                 </thead>
                 <tbody
@@ -42,6 +43,9 @@
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{ $ticket->updated_at->diffForHumans() }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            <a href="{{ route('time_tracking.create', $ticket->id) }}">Log time</a>
                         </td>
                     </tr>
                 @endforeach
