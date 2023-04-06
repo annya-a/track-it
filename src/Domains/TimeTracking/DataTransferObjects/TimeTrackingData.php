@@ -3,6 +3,7 @@
 namespace Domain\TimeTracking\DataTransferObjects;
 
 use Carbon\Carbon;
+use Spatie\LaravelData\Attributes\Validation\After;
 use Spatie\LaravelData\Attributes\Validation\GreaterThan;
 use Spatie\LaravelData\Attributes\Validation\IntegerType;
 use Spatie\LaravelData\Attributes\Validation\Max;
@@ -19,7 +20,7 @@ class TimeTrackingData extends Data
         public ?int $id,
         #[Required, WithCast(DateTimeInterfaceCast::class)]
         public Carbon $started_at,
-        #[WithCast(DateTimeInterfaceCast::class)]
+        #[WithCast(DateTimeInterfaceCast::class), After('started_at')]
         public ?Carbon $ended_at,
         #[Required, IntegerType, GreaterThan(0)]
         public int $creator_id,

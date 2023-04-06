@@ -24,7 +24,7 @@ class TimeTrackingRequest extends FormRequest
         return [
             'description' => ['nullable', 'string', 'max:255'],
             'started_at' => ['required', 'date'],
-            'ended_at' => ['nullable', 'date']
+            'ended_at' => ['nullable', 'date', 'after:started_at']
         ];
     }
 }
