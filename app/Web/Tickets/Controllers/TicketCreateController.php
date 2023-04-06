@@ -30,7 +30,8 @@ class TicketCreateController extends Controller
     public function create(int $project)
     {
         return view('tickets.create', [
-            'project' => $this->get_project_action->execute($project)
+            'project' => $this->get_project_action->execute($project),
+            'pageTitle' => 'Create ticket',
         ]);
     }
 

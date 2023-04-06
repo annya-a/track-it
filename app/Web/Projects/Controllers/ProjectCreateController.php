@@ -18,7 +18,9 @@ class ProjectCreateController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        return view('projects.create', [
+            'pageTitle' => 'Create project'
+        ]);
     }
 
     public function store(ProjectStoreRequest $request)

@@ -31,12 +31,15 @@ class TimeTrackingCreateController extends Controller
      */
     public function create(int $ticket)
     {
-        $ticketData = TicketFindData::from([
+        $ticketFindData = TicketFindData::from([
             'id' => $ticket
         ]);
 
+        $ticket = $this->get_ticket_action->execute($ticketFindData);
+
         return view('time_tracking.create', [
-            'ticket' => $this->get_ticket_action->execute($ticketData)
+            'ticket' => $ticket,
+            'pageTitle' => "Log time for ticket \"{$ticket->title}\"",
         ]);
     }
 

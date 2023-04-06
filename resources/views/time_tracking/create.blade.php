@@ -4,7 +4,12 @@
      */
 @endphp
 
-<x-layout.basic>
+@props([
+    'ticket',
+    'pageTitle',
+])
+
+<x-layout.basic :pageTitle="$pageTitle">
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <x-forms.form :action="route('time_tracking.create', ['ticket' => $ticket->id])" method="POST">
             <x-forms.text name="description" :value="old('description')" title="Description"/>

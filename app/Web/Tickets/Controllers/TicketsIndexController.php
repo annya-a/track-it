@@ -8,6 +8,7 @@ use Domain\Projects\DataTransferObjects\ProjectData;
 use Domain\Tickets\Actions\GetTicketsListAction;
 use Domain\Tickets\DataTransferObjects\TicketsListData;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class TicketsIndexController extends Controller
 {
@@ -42,7 +43,7 @@ class TicketsIndexController extends Controller
 
         return view('tickets.index', [
             'tickets' => $tickets,
-            'pageTitle' => $this->getPageTitle($projectData),
+            'pageTitle' => $this->getPageTitle($request->route(), $projectData),
             'searchAction' => $this->getSearchAction($projectData),
         ]);
     }
@@ -53,8 +54,12 @@ class TicketsIndexController extends Controller
      * @param ProjectData|null $project
      * @return string
      */
-    private function getPageTitle(?ProjectData $project): string
+    private function getPageTitle(Route $route, ?ProjectData $project): string
     {
+        if ($route->named('dashboard')) {
+            return 'Dashboard';
+        }
+
         return $project ? $project->name : 'Tickets';
     }
 

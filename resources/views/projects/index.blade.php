@@ -4,7 +4,12 @@
      */
 @endphp
 
-<x-layout.basic>
+@props([
+    'project',
+    'pageTitle'
+])
+
+<x-layout.basic :pageTitle="$pageTitle">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
