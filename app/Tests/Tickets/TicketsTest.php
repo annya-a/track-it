@@ -150,7 +150,6 @@ class TicketsTest extends TestCase
             ->create();
 
         $project = Project::factory()
-            ->for($user, 'creator')
             ->for(Company::factory())
             ->create();
 

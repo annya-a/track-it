@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\TimeTrack\Database\Factories;
+namespace Domain\TimeTracking\Database\Factories;
 
 use Domain\Tickets\Models\Ticket;
-use Domain\TimeTrack\Models\TimeTracking;
+use Domain\TimeTracking\Models\TimeTracking;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -2,6 +2,7 @@
 
 namespace Domain\Tickets\Models;
 
+use Domain\Companies\Models\Company;
 use Domain\Projects\DataTransferObjects\ProjectData;
 use Domain\Projects\Models\Project;
 use Domain\Tickets\Database\Factories\TicketFactory;
@@ -33,6 +34,11 @@ class Ticket extends Model
     public function creator()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function company()
+    {
+        return $this->project()->getRelation('company');
     }
 
     public function toSearchableArray()

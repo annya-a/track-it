@@ -3,6 +3,7 @@
 namespace Domain\Tickets\DataTransferObjects;
 
 use Carbon\Carbon;
+use Domain\Companies\DataTransferObjects\CompanyData;
 use Domain\Projects\DataTransferObjects\ProjectData;
 use Domain\Tickets\Enums\TicketStatus;
 use Domain\Users\DataTransferObjects\UserData;
@@ -15,7 +16,6 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Lazy;
 
 class TicketData extends Data
 {
@@ -36,6 +36,7 @@ class TicketData extends Data
         public ?Carbon $updated_at,
         public ?ProjectData $project,
         public ?UserData $creator,
+        public ?CompanyData $company,
     )
     {
     }

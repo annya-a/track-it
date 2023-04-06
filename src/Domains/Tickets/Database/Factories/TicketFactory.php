@@ -2,6 +2,7 @@
 
 namespace Domain\Tickets\Database\Factories;
 
+use Domain\Projects\Models\Project;
 use Domain\Tickets\Enums\TicketStatus;
 use Domain\Tickets\Models\Ticket;
 use Domain\Users\Models\User;
@@ -32,6 +33,7 @@ class TicketFactory extends Factory
                 TicketStatus::resolved(),
             ]),
             'creator_id' => User::factory(),
+            'project_id' => Project::factory(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];

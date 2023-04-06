@@ -9,6 +9,8 @@ use Domain\Projects\Models\Project;
 use Domain\Projects\Policies\ProjectPolicy;
 use Domain\Tickets\Models\Ticket;
 use Domain\Tickets\Policies\TicketPolicy;
+use Domain\TimeTracking\Models\TimeTracking;
+use Domain\TimeTracking\Policies\TimeTrackingPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Company::class => CompanyPolicy::class,
         Project::class => ProjectPolicy::class,
         Ticket::class => TicketPolicy::class,
+        TimeTracking::class => TimeTrackingPolicy::class,
     ];
 
     /**

@@ -2,8 +2,10 @@
 
 namespace Domain\TimeTracking\Models;
 
+use Domain\Companies\Models\Company;
 use Domain\Tickets\Models\Ticket;
-use Domain\TimeTrack\Database\Factories\TimeTrackingFactory;
+use Domain\TimeTracking\Database\Factories\TimeTrackingFactory;
+use Domain\TimeTracking\QueryBuilders\ProjectCompanyScope;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +25,14 @@ class TimeTracking extends Model
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new ProjectCompanyScope);
     }
 
     protected static function newFactory(): TimeTrackingFactory

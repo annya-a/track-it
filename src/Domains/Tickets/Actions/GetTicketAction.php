@@ -3,13 +3,21 @@
 namespace Domain\Tickets\Actions;
 
 use Domain\Tickets\DataTransferObjects\TicketData;
+use Domain\Tickets\DataTransferObjects\TicketFindData;
 use Domain\Tickets\Models\Ticket;
 
 class GetTicketAction
 {
-    public function execute(int $id): TicketData
+    public function execute(TicketFindData $data): TicketData| null
     {
-        $ticket = Ticket::find($id);
+        if (!$ticket = Ticket::find($data->id)) {
+            return null;
+        }
+
+        foreach ($data->relations as $relation) {
+            $ticket->load(['project']);
+        }
+
         return TicketData::from($ticket);
     }
 }

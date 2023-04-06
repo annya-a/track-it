@@ -5,6 +5,7 @@ namespace App\Web\TimeTracking\Controllers;
 use App\Http\Controllers\Controller;
 use App\Web\TimeTracking\Requests\TimeTrackingRequest;
 use Domain\Tickets\Actions\GetTicketAction;
+use Domain\Tickets\DataTransferObjects\TicketFindData;
 use Domain\TimeTracking\Actions\CreateTimeTrackingAction;
 use Domain\TimeTracking\DataTransferObjects\TimeTrackingData;
 use Illuminate\Support\Carbon;
@@ -30,8 +31,12 @@ class TimeTrackingCreateController extends Controller
      */
     public function create(int $ticket)
     {
+        $ticketData = TicketFindData::from([
+            'id' => $ticket
+        ]);
+
         return view('time_tracking.create', [
-            'ticket' => $this->get_ticket_action->execute($ticket)
+            'ticket' => $this->get_ticket_action->execute($ticketData)
         ]);
     }
 
