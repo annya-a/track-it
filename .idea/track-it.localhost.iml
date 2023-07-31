@@ -127,6 +127,9 @@
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/nette/utils" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/fruitcake/php-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/league/flysystem-local" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/symfony/polyfill-php83" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/mcamara/laravel-localization" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
