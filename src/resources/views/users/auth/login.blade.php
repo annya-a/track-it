@@ -23,16 +23,16 @@
                         <h1
                             class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
                         >
-                            Login
+                            {{ __('Login') }}
                         </h1>
                         <x-forms.form  :action="route('login')" method="POST">
-                            <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
+                            <x-forms.email name="email" :title="__('Email')" :value="old('email')" placeholder="johndoe@example.com" />
 
-                            <x-forms.password name="password" title="Password" placeholder="***************" />
+                            <x-forms.password name="password" :title="__('Password')" placeholder="***************" />
 
 
                             <x-forms.button name="login" class="w-full">
-                                Log in
+                                {{ __('Log in') }}
                             </x-forms.button>
                         </x-forms.form>
 
@@ -41,7 +41,7 @@
                                 class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                                 href="{{ route('register') }}"
                             >
-                                Create account
+                                {{ __('Create account') }}
                             </a>
                         </p>
                     </div>

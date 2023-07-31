@@ -18,11 +18,11 @@
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
-                    <th class="px-4 py-3">Title</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Project</th>
-                    <th class="px-4 py-3">Updated</th>
-                    <th class="px-4 py-3">Actions</th>
+                    <th class="px-4 py-3">{{ __('Title') }}</th>
+                    <th class="px-4 py-3">{{ __('Status') }}</th>
+                    <th class="px-4 py-3">{{ __('Project') }}</th>
+                    <th class="px-4 py-3">{{ __('Updated') }}</th>
+                    <th class="px-4 py-3">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
                 <tbody
@@ -45,7 +45,9 @@
                             {{ $ticket->updated_at->diffForHumans() }}
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            <a href="{{ route('time_tracking.create', $ticket->id) }}">Log time</a>
+                            <a href="{{ route('time_tracking.create', $ticket->id) }}">
+                                {{ __('Log time') }}
+                            </a>
                         </td>
                     </tr>
                 @endforeach

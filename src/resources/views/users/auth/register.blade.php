@@ -23,33 +23,33 @@
                         <h1
                             class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
                         >
-                            Create account
+                            {{ __('Create account') }}
                         </h1>
                         <x-forms.form :action="route('register')" method="POST">
                             <div class="mt-4">
-                                <x-forms.text name="name" title="Your Name" :value="old('name')" placeholder="John Doe"/>
+                                <x-forms.text name="name" :title="__('Your Name')" :value="old('name')" placeholder="John Doe"/>
                             </div>
                             <div class="mt-4">
-                                <x-forms.email name="email" title="Email" :value="old('email')" placeholder="johndoe@example.com" />
+                                <x-forms.email name="email" :title="__('Email')" :value="old('email')" placeholder="johndoe@example.com" />
                             </div>
                             <div class="mt-4">
-                                <x-forms.password name="password" title="Password" placeholder="***************"/>
+                                <x-forms.password name="password" :title="__('Password')" placeholder="***************"/>
                             </div>
                             <div class="mt-4">
-                                <x-forms.password name="password_confirmation" title="Confirm password" placeholder="***************"/>
+                                <x-forms.password name="password_confirmation" :title="__('Confirm password')" placeholder="***************"/>
                             </div>
                             <div class="mt-4">
-                                <x-forms.checkbox name="policy" :value="old('policy')" option="1" title="I agree to the privacy policy"/>
+                                <x-forms.checkbox name="policy" :value="old('policy')" option="1" :title="__('I agree to the privacy policy')"/>
                             </div>
 
-                            <x-forms.button name="register" class="w-full">Create account</x-forms.button>
+                            <x-forms.button name="register" class="w-full">{{ __('Create account') }}</x-forms.button>
 
                             <p class="mt-4">
                                 <a
                                     class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                                     href="{{ route('login')}} "
                                 >
-                                    Already have an account? Login
+                                    {{ __('Already have an account? Login') }}
                                 </a>
                             </p>
                         </x-forms.form>
