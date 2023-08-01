@@ -2,7 +2,7 @@
 
 namespace Domain\Tickets\Models;
 
-use Domain\Companies\Models\Company;
+use Astrotomic\Translatable\Translatable;
 use Domain\Projects\DataTransferObjects\ProjectData;
 use Domain\Projects\Models\Project;
 use Domain\Tickets\Database\Factories\TicketFactory;
@@ -18,7 +18,9 @@ use Laravel\Scout\Searchable;
 
 class Ticket extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, Translatable;
+
+    public array $translatedAttributes = ['title'];
 
     protected $casts = [
         'status' => TicketStatus::class,
