@@ -28,6 +28,7 @@
         <x-layout.partials.search :searchAction="$searchAction"/>
 
         <ul class="flex items-center flex-shrink-0 space-x-6">
+            <x-layout.partials.language-switcher/>
             <x-layout.partials.theme-toggler/>
             <x-layout.partials.profile-menu/>
         </ul>

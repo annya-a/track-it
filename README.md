@@ -8,3 +8,6 @@ Simple time-tracking system developed on Laravel.
 - Tests
 - UI is based on [Windmill Dashboard](https://github.com/estevanmaito/windmill-dashboard) - Tailwind CSS administrative theme.
 - Docker
+
+### Features:
+- Multilingual support(English and Ukrainian)
