@@ -21,7 +21,7 @@ class ProjectsIndexController extends Controller
     {
         return view('projects.index', [
             'projects' => $this->list_action->execute(),
-            'pageTitle' => 'Projects',
+            'pageTitle' => __('Projects'),
         ]);
     }
 }

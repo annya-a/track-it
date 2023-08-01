@@ -1,4 +1,4 @@
 /.fleet
-/.idea
+/.idea/*
 /.vscode
 data/*

@@ -10,6 +10,6 @@ RUN mkdir -p /var/www/html
 
 CMD ["php-fpm", "-y", "/usr/local/etc/php-fpm.conf", "-R"]
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql bcmath
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer

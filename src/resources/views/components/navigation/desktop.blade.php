@@ -3,7 +3,7 @@
 @endphp
 
 <ul class="mt-6">
-    <x-navigation.partials.link routeName="dashboard" title="Dashboard">
+    <x-navigation.partials.link routeName="dashboard" :title="__('Dashboard')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -21,7 +21,7 @@
     </x-navigation.partials.link>
 </ul>
 <ul>
-    <x-navigation.partials.link routeName="projects.index" title="Projects">
+    <x-navigation.partials.link routeName="projects.index" :title="__('Projects')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -38,7 +38,7 @@
         </svg>
     </x-navigation.partials.link>
 
-    <x-navigation.partials.link routeName="tickets.index" title="Tickets">
+    <x-navigation.partials.link routeName="tickets.index" :title="__('Tickets')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -59,7 +59,7 @@
         <a href="{{ route('companies.create') }}"
            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
         >
-            Create company
+            {{ __('Create company') }}
             <span class="ml-2" aria-hidden="true">+</span>
         </a>
     </div>
@@ -70,7 +70,7 @@
         <a href="{{ route('tickets.create', request()->route()->parameter('project')) }}"
            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
         >
-            Create ticket
+            {{ __('Create ticket') }}
             <span class="ml-2" aria-hidden="true">+</span>
         </a>
     </div>
@@ -81,7 +81,7 @@
         <a href="{{ route('projects.create') }}"
            class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
         >
-            Create project
+            {{ __('Create project') }}
             <span class="ml-2" aria-hidden="true">+</span>
         </a>
     </div>
