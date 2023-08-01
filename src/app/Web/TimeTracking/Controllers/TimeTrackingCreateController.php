@@ -39,7 +39,7 @@ class TimeTrackingCreateController extends Controller
 
         return view('time_tracking.create', [
             'ticket' => $ticket,
-            'pageTitle' => "Log time for ticket \"{$ticket->title}\"",
+            'pageTitle' => __('Log time for ticket :name', ['name' => $ticket->title]),
         ]);
     }
 

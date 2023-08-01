@@ -57,10 +57,10 @@ class TicketsIndexController extends Controller
     private function getPageTitle(Route $route, ?ProjectData $project): string
     {
         if ($route->named('dashboard')) {
-            return 'Dashboard';
+            return __('Dashboard');
         }
 
-        return $project ? $project->name : 'Tickets';
+        return $project ? $project->name : __('Tickets');
     }
 
     /**

@@ -19,7 +19,7 @@ class ProjectCreateController extends Controller
     public function create()
     {
         return view('projects.create', [
-            'pageTitle' => 'Create project'
+            'pageTitle' => __('Create project'),
         ]);
     }
 

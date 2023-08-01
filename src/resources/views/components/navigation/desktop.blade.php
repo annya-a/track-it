@@ -3,7 +3,7 @@
 @endphp
 
 <ul class="mt-6">
-    <x-navigation.partials.link routeName="dashboard" title="Dashboard">
+    <x-navigation.partials.link routeName="dashboard" :title="__('Dashboard')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -21,7 +21,7 @@
     </x-navigation.partials.link>
 </ul>
 <ul>
-    <x-navigation.partials.link routeName="projects.index" title="Projects">
+    <x-navigation.partials.link routeName="projects.index" :title="__('Projects')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
@@ -38,7 +38,7 @@
         </svg>
     </x-navigation.partials.link>
 
-    <x-navigation.partials.link routeName="tickets.index" title="Tickets">
+    <x-navigation.partials.link routeName="tickets.index" :title="__('Tickets')">
         <svg
             class="w-5 h-5"
             aria-hidden="true"
